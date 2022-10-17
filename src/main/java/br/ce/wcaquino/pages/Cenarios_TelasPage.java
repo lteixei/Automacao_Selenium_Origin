@@ -456,7 +456,8 @@ public class Cenarios_TelasPage extends BasePage {
 	
 
 	public void setIMEI(String imei) throws InterruptedException {
-		escreverSemTroca("//input", imei);
+		Thread.sleep(8000);
+		escreverSemTroca("//input[@type='text']", imei);
 	}
 
 	public void clickPopupIMEI() throws InterruptedException {

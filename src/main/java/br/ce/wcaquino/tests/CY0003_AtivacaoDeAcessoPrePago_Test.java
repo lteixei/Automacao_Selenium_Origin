@@ -131,7 +131,12 @@ public class CY0003_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 	// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
 		cenariostelas.proximoEscolhaNum();
+		
 	
+	// ######## DADOS DA ALÇADA ########
+		//cenariostelas.checkCiente();
+		cenariostelas.clickBotaoAlcada();
+		
 
 	// ######## RESUMO DA OPERAÇÃO ########
 		//cenariostelas.checkCiente();
