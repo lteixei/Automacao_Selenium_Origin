@@ -17,22 +17,22 @@ public class BasePage {
  * @throws InterruptedException ************/
 
 	public void escrever(String name_campo, String texto) throws InterruptedException{
-		Thread.sleep(3000);
-		getDriver().switchTo().frame("iframe");
-		getDriver().findElement(By.xpath(name_campo)).clear();
-		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
-		getDriver().switchTo().defaultContent();
-	}
-	public void escreverSemTroca(String name_campo, String texto) throws InterruptedException{
-		Thread.sleep(3000);
-		getDriver().findElement(By.xpath(name_campo)).clear();
-		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
-	}
-	
-	public String obterValorCampo(String id_campo) {
-		return getDriver().findElement(By.id(id_campo)).getAttribute("value");
-	}
-	
+        Thread.sleep(5000);
+        getDriver().switchTo().frame("iframe");
+        getDriver().findElement(By.xpath(name_campo)).clear();
+        getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
+        getDriver().switchTo().defaultContent();
+    }
+    public void escreverSemTroca(String name_campo, String texto) throws InterruptedException{
+        Thread.sleep(5000);
+        getDriver().findElement(By.xpath(name_campo)).clear();
+        getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
+    }
+    
+    public String obterValorCampo(String id_campo) {
+        return getDriver().findElement(By.id(id_campo)).getAttribute("value");
+    }
+    
 	/********* Radio e Check ************/
 	
 	public void clicarRadio(By by) {
@@ -112,20 +112,29 @@ public class BasePage {
 	
 	/********* Botao ************/
 		
-	public void clicarBotao(String id) {
-		getDriver().switchTo().frame("iframe");
-		getDriver().findElement(By.id(id)).click();
-		getDriver().switchTo().defaultContent();
-	}
-	
-	public void clicarBotaoSemTroca(String id) throws InterruptedException {
-		Thread.sleep(3000);
-		getDriver().findElement(By.id(id)).click();
-	}
-	
-	public String obterValueElemento(String id) {
-		return getDriver().findElement(By.id(id)).getAttribute("value");
-	}
+	/********* Botao ************/
+    
+    public void clicarBotao(String id) {
+        getDriver().switchTo().frame("iframe");
+        getDriver().findElement(By.id(id)).click();
+        getDriver().switchTo().defaultContent();
+    }
+    
+    public void clicarBotaoSemTroca(String id) throws InterruptedException {
+        Thread.sleep(8000);
+        getDriver().findElement(By.id(id)).click();
+    }
+    
+    public void clicarXpath(String element) throws InterruptedException {
+        Thread.sleep(2000);
+        getDriver().findElement(By.xpath(element)).click();
+    }
+    
+    public String obterValueElemento(String id) {
+        return getDriver().findElement(By.id(id)).getAttribute("value");
+    }
+
+
 	
 	/********* Link ************/
 	
