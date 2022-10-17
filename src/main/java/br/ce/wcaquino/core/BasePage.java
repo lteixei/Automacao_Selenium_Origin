@@ -8,23 +8,26 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class BasePage {
+import com.gargoylesoftware.htmlunit.javascript.host.file.File;
 
+public class BasePage {
+	
 /********* TextField e TextArea 
  * @throws InterruptedException ************/
 
 	public void escrever(String name_campo, String texto) throws InterruptedException{
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		getDriver().switchTo().frame("iframe");
 		getDriver().findElement(By.xpath(name_campo)).clear();
 		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
 		getDriver().switchTo().defaultContent();
 	}
 	public void escreverSemTroca(String name_campo, String texto) throws InterruptedException{
-		Thread.sleep(3000);
 		getDriver().findElement(By.xpath(name_campo)).clear();
 		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
 	}
@@ -32,6 +35,20 @@ public class BasePage {
 	public String obterValorCampo(String id_campo) {
 		return getDriver().findElement(By.id(id_campo)).getAttribute("value");
 	}
+	
+	
+	
+	/********* UPLOAD DE ARQUIV0 ************/
+	
+	public void Upload() {
+	//UPLOAD ARQUIVO
+		String filePath = "C:\\Users\\T3666975\\Id_Frente.PNG";
+	getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(filePath);
+	getDriver().findElement(By.xpath("//input[@value='Press']")).click();
+	}
+	
+	
+	
 	
 	/********* Radio e Check ************/
 	
@@ -119,8 +136,13 @@ public class BasePage {
 	}
 	
 	public void clicarBotaoSemTroca(String id) throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 		getDriver().findElement(By.id(id)).click();
+	}
+	
+	public void clicarXpath(String element) throws InterruptedException {
+		Thread.sleep(2000);
+		getDriver().findElement(By.xpath(element)).click();
 	}
 	
 	public String obterValueElemento(String id) {

@@ -8,11 +8,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import br.ce.wcaquino.core.DriverFactory;
 import br.ce.wcaquino.pages.LoginPage;
-import br.ce.wcaquino.tests.PDVTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	PDVTest.class
+	//PDVTest.class
 })
 public class SuiteGeral {
 	private static LoginPage page = new LoginPage();
