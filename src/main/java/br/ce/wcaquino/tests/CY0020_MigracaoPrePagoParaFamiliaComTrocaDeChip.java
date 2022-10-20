@@ -44,7 +44,7 @@ public class CY0020_MigracaoPrePagoParaFamiliaComTrocaDeChip {
 		cenariostelas.clickTimFlex();
 		cenariostelas.btnProximo();
 					
-		cenariostelas.migracaoClick();
+		cenariostelas.clickMigracao();
 		cenariostelas.setCEP("12233002");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();

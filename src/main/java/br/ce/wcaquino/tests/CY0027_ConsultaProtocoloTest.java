@@ -42,8 +42,8 @@
 			cenariostelas.proximoNovoAtendimento();
 			
 			// ####### ATENDIMENTO ###########
-			cenariostelas.consultaProtocolo();
-			cenariostelas.btnProximo();
-
+			cenariostelas.clickConsultarProtocolos();
+			cenariostelas.proximoOferta();
+		
 }
 	}

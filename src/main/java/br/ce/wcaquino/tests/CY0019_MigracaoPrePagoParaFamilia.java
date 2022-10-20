@@ -36,15 +36,15 @@ public class CY0019_MigracaoPrePagoParaFamilia {
 		cenariostelas.clickAtendimento();
 		cenariostelas.proximoAmbienteAtend();
 		
-		cenariostelas.setCPF("01484040651");
-		cenariostelas.setTelefone("14981118633");
+		cenariostelas.setCPF("26111272128");
+		cenariostelas.setTelefone("19993000199");
 		cenariostelas.proximoNovoAtendimento();
 		
 		// ####### ATENDIMENTO ###########
-		cenariostelas.clickTimFlex();
-		cenariostelas.btnProximo();
+		cenariostelas.clickTimPreTop();
+		cenariostelas.proximoAtendimento();
 					
-		cenariostelas.migracaoClick();
+		cenariostelas.clickMigracao();
 		cenariostelas.setCEP("12233002");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
@@ -53,8 +53,11 @@ public class CY0019_MigracaoPrePagoParaFamilia {
 		
 		cenariostelas.escolhaTitular();
 		cenariostelas.clickBotaoFidelAparelho();
-		
-		cenariostelas.clickPlanoBlackMultiD();
+    
+   
+
+
+		cenariostelas.clickTimBlackMultiB3();
 		cenariostelas.clickSemFidelizacao();
 		cenariostelas.clickBotaoFidelAparelho();
 		cenariostelas.clickBotaoFidelAparelho();
@@ -62,12 +65,9 @@ public class CY0019_MigracaoPrePagoParaFamilia {
 		cenariostelas.clickDataVencimento();
 		cenariostelas.clickBotaoInfFatura();
 		
-		cenariostelas.clickBotaoFinalizarAtendimento();
-		
-		
-		
-		
+		//cenariostelas.clickBotaoFinalizarAtendimento();
 		
 		
     	}
-	}
+}
+	

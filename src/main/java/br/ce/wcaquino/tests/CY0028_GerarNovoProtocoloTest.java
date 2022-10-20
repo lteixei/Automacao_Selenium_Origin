@@ -41,15 +41,18 @@ public class CY0028_GerarNovoProtocoloTest extends Cenarios_TelasPage {
 		cenariostelas.setTelefone("16981110085");
 		cenariostelas.proximoNovoAtendimento();
 		
-		cenariostelas.clickTimFlex();
+		cenariostelas.clickTimPreTop();
 		cenariostelas.proximoAtendimento();
 		
 		cenariostelas.clickNovoProtocolo();
 		
+		
+		
 		cenariostelas.clickMotivo1();
-		cenariostelas.clickNaoInformadoMotivo1();
 		
+		//cenariostelas.clickNaoInformadoMotivo1();
 		
+
 		
 				
 			
