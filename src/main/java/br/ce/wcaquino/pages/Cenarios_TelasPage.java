@@ -112,6 +112,7 @@ public class Cenarios_TelasPage extends BasePage {
 		Thread.sleep(10000);
 		clicarXpath("//p[contains(.,'TIM PRÉ TOP')]");
 	}
+	
 
 	public void clickTimControle_A_Plus() throws InterruptedException {
 		Thread.sleep(10000);
@@ -203,7 +204,8 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void clickConsultarProtocolos() throws InterruptedException {
-		clicarXpath("//span[contains(.,'Consultar Protocolos')]");
+		Thread.sleep(10000);
+		clicarXpath("//ion-label[contains(.,'Consultar Protocolos')]");
 	}
 
 	// ########################################################
@@ -471,7 +473,7 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void clickControleFlex() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Controle Flex')]");
-	}
+	}	
 
 	public void clickPosPagoFatura() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Pós-Pago Fatura')]");
@@ -487,6 +489,11 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void clickTimBlackMultiExpress() throws InterruptedException {
 		clicarXpath("//span[contains(.,'TIM Black Multi Express')]");
+	}
+	
+	public void clickTimBlackMultiB3() throws InterruptedException {
+		Thread.sleep(10000);
+		clicarXpath("//p[contains(.,'60GB, Ligações e SMS ilimitados, Audiobooks by Ubook Platinum, Babbel 3, Chefsclub, Loja Gameloft, Bancah Premium + Jornais, TIM Gestão Digital, Deezer, TIM Nuvem 2TB, TIM Segurança Digital, Reforça Premium, Band News, Band Sports e Apps Redes Sociais')];");
 	}
 
 	// ########################################################
@@ -1071,7 +1078,15 @@ public class Cenarios_TelasPage extends BasePage {
 		Thread.sleep(10000);
 	}
 
+<<<<<<< HEAD
 	
+=======
+
+	public void clickMotivo1() throws InterruptedException {
+		Thread.sleep(10000);
+		clicarXpath("//ion-label[contains(.,'Motivo 1')]");
+	}
+>>>>>>> 9cf673962315c9a455f6317670c3c70de8b8b22a
 }
 // ########################################################
 

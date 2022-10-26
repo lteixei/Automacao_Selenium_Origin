@@ -6,20 +6,18 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import com.offbytwo.jenkins.JenkinsServer;
-import com.offbytwo.jenkins.client.JenkinsHttpClient;
-import com.offbytwo.jenkins.model.Job;
-import com.offbytwo.jenkins.model.JobWithDetails;
-import com.offbytwo.jenkins.model.QueueReference;
-
-import java.net.URI;
 import java.util.Map;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.client.JenkinsHttpClient;
 import com.offbytwo.jenkins.client.JenkinsHttpConnection;
+import com.offbytwo.jenkins.model.Job;
+import com.offbytwo.jenkins.model.JobWithDetails;
+import com.offbytwo.jenkins.model.QueueReference;
 
 public class JenkinsHelper {
 
