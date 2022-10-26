@@ -61,64 +61,41 @@ public class CY0026_TrocaDePlano_PosPago_PosPago_Com_TrocaDeChipTest extends Cen
 						
 						
 		// ######## ATENDIMENTO ########
-			//cenariostelas.insertNovoTel("19981110003");
-			//cenariostelas.clickTimControle_A_Plus();
 			cenariostelas.clickTimControle_RedesSociais_4();
-			//cenariostelas.clickTimPreTop();
-			//cenariostelas.clickOpcao();
-			//cenariostelas.clickCampoDDD();
-			//cenariostelas.clickDDD();
 			cenariostelas.proximoAtendimento();
 						
 						
 		// ######## NO PÓS VENDA ########
-			//cenariostelas.insertNovoTel("19981110003");
-			//cenariostelas.clickMigracao();
-			//cenariostelas.clickMigracaoTT();
-			//cenariostelas.clickTrocaChip();
 			cenariostelas.clickTrocaPlano();
-			//cenariostelas.clickNovoProtocolo();
-			//cenariostelas.clickConsultarProtocolos();
+						
 			
-			
-		// ######## DADOS DO CLIENTE ########
-			cenariostelas.setNome("teste");			
-			//cenariostelas.setEmailCliente("teste@teste.com");
-			//cenariostelas.confirmaEmail("teste@teste.com");
-			//cenariostelas.validaEmail();
-			cenariostelas.checkNotEmail();
-			cenariostelas.setDataNasc("12102000");
-			cenariostelas.setNomeMae("maeteste");			
-			cenariostelas.setCEP("18320971");
-			cenariostelas.buscarCEP();
-			cenariostelas.proximoDadosClientes();
-			cenariostelas.poupupClientes();
-									
-								
 		// ######## PLANOS ########
-			cenariostelas.clickPlanoTimBlackA3();
-			cenariostelas.clickFidelPlano_Apar();
-			cenariostelas.clickBotaoPlano();
-			cenariostelas.clickPopup();
-									
-									
-		// ######## SERVIÇOS ########
-			cenariostelas.clickBotaoProsseguir();
-						
-						
+			cenariostelas.clickPlanoPosPagoFatura();
+			cenariostelas.clickPlanoTimBlack_A3();
+			cenariostelas.clickPlanoSemFidelizacao();
+			cenariostelas.clickBotaoProximoPos();
+			cenariostelas.clickPlanoPosPop_Up();
+			
+					
 		// ######## PÓS VENDA ########
-			cenariostelas.clickFinalizar();
+			cenariostelas.clickTrocaChip();	
 			
 						
 		// ######## INSERIR CHIP ########
-			cenariostelas.setCHIP("89550311000159016528");			
-			cenariostelas.proximoInserirCHIP();	
+			cenariostelas.setCHIP("89550312999026634737");			
+			cenariostelas.clickMotivoTrocaChip();
+			cenariostelas.clickMotivoSemGarantia_TrocaChip();
+			cenariostelas.proximoTrocaCHIP();	
+			
+		// ######## PÓS VENDA ########
+			//cenariostelas.clickFinalizar();
 						
 
 		// ######## RESUMO DA OPERAÇÃO ########
-			//cenariostelas.checkCiente();
+			cenariostelas.checkCiente();
 			//cenariostelas.clickCriarPedido();
 			cenariostelas.clickCriarPedidoComDoc();
+			cenariostelas.clickPopupFim();
 
 		}
 	}

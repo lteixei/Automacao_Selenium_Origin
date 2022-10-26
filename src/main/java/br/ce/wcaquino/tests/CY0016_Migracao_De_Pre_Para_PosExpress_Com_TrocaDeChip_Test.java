@@ -35,8 +35,8 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
 	public void test1_CY0016_MigracaoPre_Para_PosExpress_Com_TrocaDeChip() throws InterruptedException{
-		cenariostelas.sendPDV("VAREJO_LASA_L229"); 
-		cenariostelas.EscolhaPDVVarejo();
+		cenariostelas.sendPDV("MORUMBI"); 
+		cenariostelas.EscolhaPDVMorumbi();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
 		
@@ -77,14 +77,14 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 		
 	
 	// ######## DADOS DO CLIENTE ########
-		cenariostelas.setNome("teste");			
+		//cenariostelas.setNome("teste");			
 		cenariostelas.setEmailCliente("teste@teste.com");
 		//cenariostelas.confirmaEmail("teste@teste.com");
 		//cenariostelas.validaEmail();
 		//cenariostelas.checkNotEmail("teste@teste.com");
-		cenariostelas.setDataNasc("12102000");
-		cenariostelas.setNomeMae("maeteste");			
-		cenariostelas.setCEP("03178030");
+		//cenariostelas.setDataNasc("12102000");
+		//cenariostelas.setNomeMae("maeteste");			
+		cenariostelas.setCEPTroca("03178030");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
 		//cenariostelas.poupupClientes();
@@ -119,9 +119,10 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 					
 					
 	// ######## TROCA DE CHIP ########
-		cenariostelas.setTrocaCHIP("89550311000172250658");
+		cenariostelas.setTrocaCHIP("89550311000172351126");
 		cenariostelas.clickMotivoTrocaChip();
-		cenariostelas.escolhaMotivoTrocaChip();
+		cenariostelas.clickMotivoSemGarantia_TrocaChip();
+		//cenariostelas.clickMotivoComGarantia_TrocaChip();
 		cenariostelas.proximoTrocaCHIP();
 	
 	

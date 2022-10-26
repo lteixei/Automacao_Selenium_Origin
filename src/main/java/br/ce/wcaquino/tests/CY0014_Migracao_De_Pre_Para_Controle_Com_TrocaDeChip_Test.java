@@ -33,7 +33,7 @@ public class CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test extends C
 	
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
-	public void test1_CY0012_AtivacaoControleExpress() throws InterruptedException{
+	public void test1_CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test() throws InterruptedException{
 		cenariostelas.sendPDV("MORUMBI"); 
 		cenariostelas.EscolhaPDVMorumbi();
 		cenariostelas.confirmaPDV();
@@ -56,8 +56,8 @@ public class CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test extends C
 		//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 		//System.out.print("CPF:"+cpf);
 		//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-		cenariostelas.setCPF("09367277644");
-		cenariostelas.setTelefone("11924688881");
+		cenariostelas.setCPF("42451879807");
+		cenariostelas.setTelefone("11981217028");
 		cenariostelas.proximoNovoAtendimento();
 		
 		
@@ -77,8 +77,8 @@ public class CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test extends C
 			
 	
 	// ######## DADOS DO CLIENTE ########
-		cenariostelas.setNome("teste");			
-		cenariostelas.setEmailCliente("teste@teste.com");
+		//cenariostelas.setNome("teste");			
+		//cenariostelas.setEmailCliente("teste@teste.com");
 		//cenariostelas.confirmaEmail("teste@teste.com");
 		//cenariostelas.validaEmail();
 		//cenariostelas.checkNotEmail("teste@teste.com");
@@ -88,8 +88,7 @@ public class CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test extends C
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
 		//cenariostelas.poupupClientes();
-	
-	
+		
 	// ######## MIGRACAO ########
 		cenariostelas.clickPre_ControleFatura();
 					
@@ -123,7 +122,8 @@ public class CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test extends C
 	// ######## TROCA DE CHIP ########
 		cenariostelas.setTrocaCHIP("89550311000172250831");
 		cenariostelas.clickMotivoTrocaChip();
-		cenariostelas.escolhaMotivoTrocaChip();
+		cenariostelas.clickMotivoSemGarantia_TrocaChip();
+		//cenariostelas.clickMotivoComGarantia_TrocaChip();
 		cenariostelas.proximoTrocaCHIP();
 	
 

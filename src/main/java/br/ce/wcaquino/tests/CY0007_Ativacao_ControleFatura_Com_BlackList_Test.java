@@ -52,57 +52,48 @@ public class CY0007_Ativacao_ControleFatura_Com_BlackList_Test extends Cenarios_
 			
 			
 		// ######## NOVO ATENDIMENTO ########
-			String cpf = gerarCpfCnpj.cpf(false);
-			Connection conn = DataBaseUtils.newCrivoConnection();
-			//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			System.out.print("CPF:"+cpf);
-			boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			DataBaseUtils.closeConnection(conn);
-			cenariostelas.setCPF(cpf);
+			//## CPF TEM QUE ESTAR NA BLACK LIST
+			cenariostelas.setCPF("00920212980");
 			cenariostelas.setTelefone("11982237102");
 			cenariostelas.proximoNovoAtendimento();
 			
 			
 		// ######## ATENDIMENTO ########
-			cenariostelas.clickOpcao();
+			cenariostelas.clickOpcaoDemorada();
 			cenariostelas.clickCampoDDD();
 			cenariostelas.clickDDD();
 			cenariostelas.proximoAtendimento();
 			
 		
 		// ######## DADOS DO CLIENTE ########
-			cenariostelas.setNome("teste");			
+			//cenariostelas.setNome("teste");			
 			//cenariostelas.setEmailCliente("teste@teste.com");
 			//cenariostelas.confirmaEmail("teste@teste.com");
 			//cenariostelas.validaEmail();
-			cenariostelas.checkNotEmail();
-			cenariostelas.setDataNasc("12102000");
-			cenariostelas.setNomeMae("maeteste");			
-			cenariostelas.setCEP("01311000");
+			//cenariostelas.checkNotEmail();
+			//cenariostelas.setDataNasc("12102000");
+			//cenariostelas.setNomeMae("maeteste");			
+			//cenariostelas.setCEPTroca("18320971");
 			cenariostelas.buscarCEP();
 			cenariostelas.proximoDadosClientes();
-			cenariostelas.poupupClientes();
+			//cenariostelas.poupupClientes();
 			
 			
 		// ######## ENDEREÇO DO CLIENTE ########
-			//cenariostelas.clickFecharPopup();
-			//cenariostelas.clickAntesLogradouro();
-			//cenariostelas.clickTipoLogradouro();
-			//cenariostelas.setNomeDaRua("Itagiba");
 			cenariostelas.setNumero("520");
 			cenariostelas.proximoEnderecoClientes();
 		
 			
 		// ######## DADOS COMPLEMENTARES ########
-			cenariostelas.clickSexoFeminino();			
-			cenariostelas.ckickAntesEscolherDoc();
-			cenariostelas.ckicEscolherDocID();
-			cenariostelas.setNumeroIdentidade("12345679");			
-			cenariostelas.setDataEmissão("12/10/2000");
-			cenariostelas.setOrgaoEmissor("SSD");
-			cenariostelas.clickAntesUF();
-			cenariostelas.clickUF();
-			cenariostelas.setTelContato("15964738960");
+			//cenariostelas.clickSexoFeminino();			
+			//cenariostelas.ckickAntesEscolherDoc();
+			//cenariostelas.ckicEscolherDocID();
+			//cenariostelas.setNumeroIdentidade("12345679");			
+			//cenariostelas.setDataEmissão("12/10/2000");
+			//cenariostelas.setOrgaoEmissor("SSD");
+			//cenariostelas.clickAntesUF();
+			//cenariostelas.clickUF();
+			//cenariostelas.setTelContato("15964738960");
 			cenariostelas.proximoDadosComplementares();
 			
 			
@@ -128,7 +119,7 @@ public class CY0007_Ativacao_ControleFatura_Com_BlackList_Test extends Cenarios_
 								
 			
 		// ######## INFORMAÇÃO DA FATURA ########
-			cenariostelas.clickDataVencimento();
+			cenariostelas.clickDataVencimento_P();
 			cenariostelas.clickBotaoInfFatura();
 			
 									

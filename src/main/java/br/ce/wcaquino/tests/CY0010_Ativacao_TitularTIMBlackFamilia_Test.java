@@ -35,16 +35,6 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 		// ######## IDENTIFICAÇÃO DE PDV ########
 		@Test
 		public void test1_CY0010_Ativacao_TitularTIMBlackFamilia() throws InterruptedException{
-			// ### VAREJO ### //
-			//cenariostelas.sendPDV("VAREJO_LASA_L229"); 
-			//cenariostelas.EscolhaPDVVarejo();
-			// ### MAGAZINE LUIZA ### //
-			//cenariostelas.sendPDV("MAGAZINE"); 
-			//cenariostelas.EscolhaPDVMagazineluiza();
-			// ### DUTRA ### //
-			//cenariostelas.sendPDV("DUTRA"); 
-			//cenariostelas.EscolhaPDVDutra();
-			// ### MORUMBIA ### //
 			cenariostelas.sendPDV("MORUMBI"); 
 			cenariostelas.EscolhaPDVMorumbi();
 			cenariostelas.confirmaPDV();
@@ -64,7 +54,6 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 		// ######## NOVO ATENDIMENTO ########
 			String cpf = gerarCpfCnpj.cpf(false);
 			Connection conn = DataBaseUtils.newCrivoConnection();
-			//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 			System.out.print("CPF:"+cpf);
 			boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 			cenariostelas.setCPF(cpf);
@@ -84,17 +73,14 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 			cenariostelas.setEmailCliente("teste@teste.com");
 			cenariostelas.confirmaEmail("teste@teste.com");
 			cenariostelas.validaEmail();
-			//cenariostelas.checkNotEmail("teste@teste.com");
 			cenariostelas.setDataNasc("12102000");
 			cenariostelas.setNomeMae("maeteste");			
 			cenariostelas.setCEP("18320971");
 			cenariostelas.buscarCEP();
 			cenariostelas.proximoDadosClientes();
-			cenariostelas.poupupClientes();
 				
 				
 		// ######## ENDEREÇO DO CLIENTE ########
-			//endcliPage.clickFecharPopup();
 			cenariostelas.clickAntesLogradouro();
 			cenariostelas.clickTipoLogradouro();
 			cenariostelas.setNomeDaRua("Itagiba");
@@ -116,19 +102,10 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 				
 				
 		// ######## ESCOLHA O SEGMENTO ########
-			//cenariostelas.clickPrepago();			
-			//cenariostelas.clickControleExpress();
-			//cenariostelas.clickControleFatura();
-			//cenariostelas.clickControleFlex();			
-			//cenariostelas.clickPosPagoFtura();
-			//cenariostelas.clickPosPagoExpress();
 			cenariostelas.clickTimBlackMultiFatura();
-			//cenariostelas.clickTimBlackMultiExpress();
 								
 		// ######## ESCOLHER TITULAR OU DEPENDENTE ########
 			cenariostelas.escolhaTitular();
-			//cenariostelas.escolhaDependente();
-			//cenariostelas.numeroTitular("12345");
 			cenariostelas.clickBotaoTitDep();		
 					
 					
@@ -139,9 +116,7 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 								
 								
 		// ######## SERVIÇOS ########
-			//cenariostelas.clickBotaoNetflix();
 			cenariostelas.clickBotaoHBO();
-			//cenariostelas.clickBotaoYoutube();
 			cenariostelas.clickBotaoProsseguir();
 								
 								
@@ -151,7 +126,7 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 										
 							
 		// ######## INSERIR CHIP ########
-			cenariostelas.setCHIP("89550311000159016528");			
+			cenariostelas.setCHIP("89550311000172253553");			
 			cenariostelas.proximoInserirCHIP();
 			
 			
@@ -161,20 +136,16 @@ public class CY0010_Ativacao_TitularTIMBlackFamilia_Test extends Cenarios_TelasP
 			
 			
 		// ######## DADOS DA ALÇADA ########
-			cenariostelas.clickBotaoAnexar();
 			cenariostelas.anexarIdentFrente();
-			cenariostelas.clickBotaoAnexar1();
 			cenariostelas.anexarIdentVerso();
-			cenariostelas.clickBotaoAnexar2();
 			cenariostelas.anexarCPF();
-			cenariostelas.clickBotaoAnexar3();
 			cenariostelas.anexarComprovanteRes();
 			cenariostelas.clickBotaoAlcada();
 				
 
 		// ######## RESUMO DA OPERAÇÃO ########
-			//cenariostelas.checkCiente();
-			cenariostelas.clickCriarPedido();
-			//cenariostelas.clickCriarPedidoComDoc();
+			cenariostelas.checkCiente();
+			//cenariostelas.clickCriarPedido();
+			cenariostelas.clickCriarPedidoComDoc();
 		}	
 }

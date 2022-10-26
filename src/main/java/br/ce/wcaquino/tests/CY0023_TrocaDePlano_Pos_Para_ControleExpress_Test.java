@@ -33,8 +33,8 @@ public class CY0023_TrocaDePlano_Pos_Para_ControleExpress_Test extends Cenarios_
 		// ######## IDENTIFICAÇÃO DE PDV ########
 		@Test
 		public void test1_CY0023_TrocaDePlano_PosParaControleExpress() throws InterruptedException{
-			cenariostelas.sendPDV("MORUMBI"); 
-			cenariostelas.EscolhaPDVMorumbi();
+			cenariostelas.sendPDV("E A DUTRA"); 
+			cenariostelas.EscolhaPDVDutra();
 			cenariostelas.confirmaPDV();
 			cenariostelas.fechapopupPDV();
 			
@@ -50,68 +50,47 @@ public class CY0023_TrocaDePlano_Pos_Para_ControleExpress_Test extends Cenarios_
 			
 			
 		// ######## NOVO ATENDIMENTO ########
-			//String cpf = gerarCpfCnpj.cpf(false);
-			//Connection conn = DataBaseUtils.newCrivoConnection();
-			//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			//System.out.print("CPF:"+cpf);
-			//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			cenariostelas.setCPF("43443095291");
-			cenariostelas.setTelefone("11981213483");//11954336341
+			cenariostelas.setCPF("14464983367");//14464983367
+			cenariostelas.setTelefone("48996012110");//48996012110
 			cenariostelas.proximoNovoAtendimento();
 			
 			
 		// ######## ATENDIMENTO ########
-			//cenariostelas.insertNovoTel("19981110003");
-			cenariostelas.clickTimControle_A_Plus();
-			//cenariostelas.clickTimPreTop();
-			//cenariostelas.clickOpcao();
-			//cenariostelas.clickCampoDDD();
-			//cenariostelas.clickDDD();
+			cenariostelas.clickBasicoPosPagoMovel();
 			cenariostelas.proximoAtendimento();
 			
 			
 		// ######## NO PÓS VENDA ########
-			//cenariostelas.insertNovoTel("19981110003");
-			//cenariostelas.clickMigracao();
-			//cenariostelas.clickMigracaoTT();
-			//cenariostelas.clickTrocaChip();
 			cenariostelas.clickTrocaPlano();
-			//cenariostelas.clickNovoProtocolo();
-			//cenariostelas.clickConsultarProtocolos();
-				
-		
-		// ######## DADOS DO CLIENTE ########
-			cenariostelas.setNome("teste");			
-			//cenariostelas.setEmailCliente("teste@teste.com");
-			//cenariostelas.confirmaEmail("teste@teste.com");
-			//cenariostelas.validaEmail();
-			cenariostelas.checkNotEmail();
-			cenariostelas.setDataNasc("12102000");
-			cenariostelas.setNomeMae("maeteste");			
-			cenariostelas.setCEP("01311000");
-			cenariostelas.buscarCEP();
-			cenariostelas.proximoDadosClientes();
-			cenariostelas.poupupClientes();
 						
 					
 		// ######## PLANOS ########
-			cenariostelas.clickPlanoTimBlackA3();
-			cenariostelas.clickFidelPlano_Apar();
+			cenariostelas.clickPlano4();
+			cenariostelas.clickPlano4_A();
 			cenariostelas.clickBotaoPlano();
-			cenariostelas.clickPopup();
-						
-						
+			cenariostelas.clickPopupSim();
+			
+			
 		// ######## SERVIÇOS ########
 			cenariostelas.clickBotaoProsseguir();
 			
 			
+		// ######## CARTÃO DE CRÉDITO ########
+			cenariostelas.setNumeroCartao("5506597606713371");
+			cenariostelas.clickMesValidade();
+			cenariostelas.escolhaMesValidade();
+			cenariostelas.clickAnoValidade();
+			cenariostelas.escolhaAnoValidade();
+			cenariostelas.setCodSeguranca("397");
+			cenariostelas.clickConfPagamento();	
+						
+						
 		// ######## PÓS VENDA ########
 			cenariostelas.clickFinalizar();	
 			
 
 		// ######## RESUMO DA OPERAÇÃO ########
-			//cenariostelas.checkCiente();
+			cenariostelas.checkCiente();
 			cenariostelas.clickCriarPedidoComDoc();
-
 		}
 	}

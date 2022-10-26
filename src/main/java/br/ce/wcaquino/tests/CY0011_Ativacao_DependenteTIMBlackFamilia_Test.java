@@ -35,16 +35,6 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 	// ######## IDENTIFICAÇÃO DE PDV ########
 		@Test
 		public void test1_CY0011_Ativacao_DependenteTIMBlackFamilia() throws InterruptedException{
-			// ### VAREJO ### //
-			//cenariostelas.sendPDV("VAREJO_LASA_L229"); 
-			//cenariostelas.EscolhaPDVVarejo();
-			// ### MAGAZINE LUIZA ### //
-			//cenariostelas.sendPDV("MAGAZINE"); 
-			//cenariostelas.EscolhaPDVMagazineluiza();
-			// ### DUTRA ### //
-			//cenariostelas.sendPDV("DUTRA"); 
-			//cenariostelas.EscolhaPDVDutra();
-			// ### MORUMBIA ### //
 			cenariostelas.sendPDV("MORUMBI"); 
 			cenariostelas.EscolhaPDVMorumbi();
 			cenariostelas.confirmaPDV();
@@ -90,7 +80,6 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 			cenariostelas.setCEP("18320971");
 			cenariostelas.buscarCEP();
 			cenariostelas.proximoDadosClientes();
-			cenariostelas.poupupClientes();
 				
 				
 		// ######## ENDEREÇO DO CLIENTE ########
@@ -116,19 +105,12 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 				
 				
 		// ######## ESCOLHA O SEGMENTO ########
-			//cenariostelas.clickPrepago();			
-			//cenariostelas.clickControleExpress();
-			//cenariostelas.clickControleFatura();
-			//cenariostelas.clickControleFlex();			
-			//cenariostelas.clickPosPagoFtura();
-			//cenariostelas.clickPosPagoExpress();
 			cenariostelas.clickTimBlackMultiFatura();
-			//cenariostelas.clickTimBlackMultiExpress();
+			
 								
 		// ######## ESCOLHER TITULAR OU DEPENDENTE ########
-			//cenariostelas.escolhaTitular();
 			cenariostelas.escolhaDependente();
-			cenariostelas.numeroTitular("15964738960");
+			cenariostelas.numeroTitular("11964530050");
 			cenariostelas.clickBotaoTitDep();		
 					
 					
@@ -140,14 +122,12 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 								
 								
 		// ######## SERVIÇOS ########
-			//cenariostelas.clickBotaoNetflix();
 			cenariostelas.clickBotaoHBO();
-			//cenariostelas.clickBotaoYoutube();
 			cenariostelas.clickBotaoProsseguir();
 			
 								
 		// ######## INSERIR CHIP ########
-			cenariostelas.setCHIP("89550311000159016528");			
+			cenariostelas.setCHIP("89550311000172253553");		//89550311000159016528
 			cenariostelas.proximoInserirCHIP();
 			
 			
@@ -156,19 +136,15 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 			cenariostelas.proximoEscolhaNum();
 				
 		// ######## DADOS DA ALÇADA ########
-			//cenariostelas.clickBotaoAnexar();
-			//cenariostelas.anexarIdentFrente();
-			//cenariostelas.clickBotaoAnexar1();
-			//cenariostelas.anexarIdentVerso();
-			//cenariostelas.clickBotaoAnexar2();
-			//cenariostelas.anexarCPF();
-			//cenariostelas.clickBotaoAnexar3();
-			//cenariostelas.anexarComprovanteRes();
-			//cenariostelas.clickBotaoAlcada();
+			cenariostelas.anexarIdentFrente();
+			cenariostelas.anexarIdentVerso();
+			cenariostelas.anexarCPF();
+			cenariostelas.anexarComprovanteRes();
+			cenariostelas.clickBotaoAlcada();
 			
 			
 		// ######## RESUMO DA OPERAÇÃO ########
-			//cenariostelas.checkCiente();
+			cenariostelas.checkCiente();
 			//cenariostelas.clickCriarPedido();
 			cenariostelas.clickCriarPedidoComDoc();
 	}	

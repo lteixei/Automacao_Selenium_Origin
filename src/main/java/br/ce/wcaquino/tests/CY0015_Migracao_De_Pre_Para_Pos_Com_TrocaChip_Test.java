@@ -33,7 +33,7 @@ public class CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test extends Cenarios
 	
 	// ######## IDENTIFICAÇÃO DE PDV ########
 		@Test
-		public void test1_CY0012_AtivacaoControleExpress() throws InterruptedException{
+		public void test1_CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test() throws InterruptedException{
 			cenariostelas.sendPDV("MORUMBI"); 
 			cenariostelas.EscolhaPDVMorumbi();
 			cenariostelas.confirmaPDV();
@@ -63,35 +63,23 @@ public class CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test extends Cenarios
 			
 		// ######## ATENDIMENTO ########
 			cenariostelas.clickTimPreTop();
-			//cenariostelas.clickOpcao();
-			//cenariostelas.clickCampoDDD();
-			//cenariostelas.clickDDD();
 			cenariostelas.proximoAtendimento();
 			
 			
 		// ######## NO PÓS VENDA ########
 			cenariostelas.clickMigracao();
-			//cenariostelas.clickTrocaChip();
-			//cenariostelas.clickNovoProtocolo();
-			//cenariostelas.clickConsultarProtocolos();
-				
+						
 		
 		// ######## DADOS DO CLIENTE ########
-			cenariostelas.setNome("teste");			
-			cenariostelas.setEmailCliente("teste@teste.com");
-			//cenariostelas.confirmaEmail("teste@teste.com");
-			//cenariostelas.validaEmail();
-			//cenariostelas.checkNotEmail("teste@teste.com");
-			cenariostelas.setDataNasc("12102000");
-			cenariostelas.setNomeMae("maeteste");			
-			cenariostelas.setCEP("03178030");
+			//cenariostelas.setNome("teste");			
+			//cenariostelas.setDataNasc("12102000");
+			//cenariostelas.setNomeMae("maeteste");			
+			//cenariostelas.setCEP("03178030");
 			cenariostelas.buscarCEP();
 			cenariostelas.proximoDadosClientes();
-			//cenariostelas.poupupClientes();
-		
+					
 		
 		// ######## MIGRACAO ########
-			//cenariostelas.poupupClientes();
 			cenariostelas.clickPre_PosPago_Fatura();
 						
 					
@@ -114,6 +102,11 @@ public class CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test extends Cenarios
 								
 		// ######## INFORMAÇÃO DA FATURA ########
 			cenariostelas.clickDataVencimento();
+			cenariostelas.clickDebitoAtutomatico();
+			cenariostelas.clickBanco();
+			cenariostelas.escolhaBanco();
+			cenariostelas.setAgencia("3553");
+			cenariostelas.setConta("11904313");
 			cenariostelas.clickBotaoInfFatura();
 			
 						
@@ -124,7 +117,8 @@ public class CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test extends Cenarios
 		// ######## TROCA DE CHIP ########
 			cenariostelas.setTrocaCHIP("89550311000172250658");
 			cenariostelas.clickMotivoTrocaChip();
-			cenariostelas.escolhaMotivoTrocaChip();
+			cenariostelas.clickMotivoSemGarantia_TrocaChip();
+			//cenariostelas.clickMotivoComGarantia_TrocaChip();
 			cenariostelas.proximoTrocaCHIP();
 		
 

@@ -63,7 +63,6 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 	// ######## NOVO ATENDIMENTO ########
 		String cpf = gerarCpfCnpj.cpf(false);
 		Connection conn = DataBaseUtils.newCrivoConnection();
-		//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 		System.out.print("CPF:"+cpf);
 		boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 		cenariostelas.setCPF(cpf);
@@ -83,17 +82,14 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.setEmailCliente("teste@teste.com");
 		cenariostelas.confirmaEmail("teste@teste.com");
 		cenariostelas.validaEmail();
-		//cenariostelas.checkNotEmail("teste@teste.com");
 		cenariostelas.setDataNasc("12102000");
 		cenariostelas.setNomeMae("maeteste");			
 		cenariostelas.setCEP("18320971");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
-		//cenariostelas.poupupClientes();
 	
 	
 	// ######## ENDEREÇO DO CLIENTE ########
-		//cenariostelas.clickFecharPopup();
 		cenariostelas.clickAntesLogradouro();
 		cenariostelas.clickTipoLogradouro();
 		cenariostelas.setNomeDaRua("Itagiba");
@@ -116,18 +112,10 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 	
 	// ######## ESCOLHA O SEGMENTO ########
 		cenariostelas.clickPrepago();			
-		//cenariostelas.clickControleExpress();
-		//cenariostelas.clickControleFatura();
-		//cenariostelas.clickControleFlex();			
-		//cenariostelas.clickPosPagoFtura();
-		//cenariostelas.clickPosPagoExpress();
-		//cenariostelas.clickTimBlackMultiFatura();
-		//cenariostelas.clickTimBlackMultiExpress();
 		
 	
 	// ######## ESCOLHA A OFERTA ########
 		cenariostelas.clickOferta1();  
-		//cenariostelas.clickOferta2();
 		cenariostelas.fechaPopup();
 		cenariostelas.proximoOferta();
 		

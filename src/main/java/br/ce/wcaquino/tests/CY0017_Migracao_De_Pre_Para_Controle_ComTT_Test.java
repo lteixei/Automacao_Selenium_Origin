@@ -33,8 +33,8 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
 	public void test1_CY0012_AtivacaoControleExpress() throws InterruptedException{
-		cenariostelas.sendPDV("MORUMBI"); 
-		cenariostelas.EscolhaPDVMorumbi();
+		cenariostelas.sendPDV("VAREJO"); 
+		cenariostelas.EscolhaPDVVarejo();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
 		
@@ -70,10 +70,10 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 		
 	
 	// ######## DADOS DO CLIENTE ########
-		cenariostelas.setNome("teste");			
-		cenariostelas.setEmailCliente("teste@teste.com");
-		cenariostelas.setDataNasc("12102000");
-		cenariostelas.setNomeMae("maeteste");			
+		//cenariostelas.setNome("teste");			
+		//cenariostelas.setEmailCliente("teste@teste.com");
+		//cenariostelas.setDataNasc("12102000");
+		//cenariostelas.setNomeMae("maeteste");			
 		cenariostelas.setCEP("12233002");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();

@@ -47,16 +47,6 @@ public class CY0009_Ativacao_De_BlackFamilia_Test extends Cenarios_TelasPage{
 	@SuppressWarnings("static-access")
 	@Test
 	public void test1_CY0009_Ativacao_De_BlackFamilia() throws InterruptedException{
-		// ### VAREJO ### //
-		//cenariostelas.sendPDV("VAREJO_LASA_L229"); 
-		//cenariostelas.EscolhaPDVVarejo();
-		// ### MAGAZINE LUIZA ### //
-		//cenariostelas.sendPDV("MAGAZINE"); 
-		//cenariostelas.EscolhaPDVMagazineluiza();
-		// ### DUTRA ### //
-		//cenariostelas.sendPDV("DUTRA"); 
-		//cenariostelas.EscolhaPDVDutra();
-		// ### MORUMBIA ### //
 		cenariostelas.sendPDV("MORUMBI"); 
 		cenariostelas.EscolhaPDVMorumbi();
 		cenariostelas.confirmaPDV();
@@ -96,17 +86,14 @@ public class CY0009_Ativacao_De_BlackFamilia_Test extends Cenarios_TelasPage{
 		cenariostelas.setEmailCliente("teste@teste.com");
 		cenariostelas.confirmaEmail("teste@teste.com");
 		cenariostelas.validaEmail();
-		//cenariostelas.checkNotEmail("teste@teste.com");
 		cenariostelas.setDataNasc("12102000");
 		cenariostelas.setNomeMae("maeteste");			
 		cenariostelas.setCEP("18320971");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
-		//cenariostelas.poupupClientes();
 			
 			
 		// ######## ENDEREÇO DO CLIENTE ########
-		//endcliPage.clickFecharPopup();
 		cenariostelas.clickAntesLogradouro();
 		cenariostelas.clickTipoLogradouro();
 		cenariostelas.setNomeDaRua("Itagiba");
@@ -128,19 +115,10 @@ public class CY0009_Ativacao_De_BlackFamilia_Test extends Cenarios_TelasPage{
 			
 			
 		// ######## ESCOLHA O SEGMENTO ########
-		//cenariostelas.clickPrepago();			
-		//cenariostelas.clickControleExpress();
-		//cenariostelas.clickControleFatura();
-		//cenariostelas.clickControleFlex();			
-		//cenariostelas.clickPosPagoFtura();
-		//cenariostelas.clickPosPagoExpress();
 		cenariostelas.clickTimBlackMultiFatura();
-		//cenariostelas.clickTimBlackMultiExpress();
 							
 		// ######## ESCOLHER TITULAR OU DEPENDENTE ########
 		cenariostelas.escolhaTitular();
-		//cenariostelas.escolhaDependente();
-		//cenariostelas.numeroTitular("12345");
 		cenariostelas.clickBotaoTitDep();		
 				
 				
@@ -151,9 +129,7 @@ public class CY0009_Ativacao_De_BlackFamilia_Test extends Cenarios_TelasPage{
 							
 							
 		// ######## SERVIÇOS ########
-		//cenariostelas.clickBotaoNetflix();
 		cenariostelas.clickBotaoHBO();
-		//cenariostelas.clickBotaoYoutube();
 		cenariostelas.clickBotaoProsseguir();
 							
 							
@@ -173,14 +149,8 @@ public class CY0009_Ativacao_De_BlackFamilia_Test extends Cenarios_TelasPage{
 	
 		// ######## UPLOAD DE ARQUIVO - DADOS DA ALÇADA ########
 		cenariostelas.anexarIdentFrente();
-		
-		//cenariostelas.clickBotaoAnexar();
-		//cenariostelas.anexarIdentFrente();
-		cenariostelas.clickBotaoAnexar1();
 		cenariostelas.anexarIdentVerso();
-		cenariostelas.clickBotaoAnexar2();
 		cenariostelas.anexarCPF();
-		cenariostelas.clickBotaoAnexar3();
 		cenariostelas.anexarComprovanteRes();
 		cenariostelas.clickBotaoAlcada();
 			

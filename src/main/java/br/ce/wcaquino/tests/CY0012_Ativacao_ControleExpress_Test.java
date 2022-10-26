@@ -1,14 +1,22 @@
 package br.ce.wcaquino.tests;
 
 import java.sql.Connection;
+import java.util.Map;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.offbytwo.jenkins.model.Build;
+import com.offbytwo.jenkins.model.JobWithDetails;
+import com.offbytwo.jenkins.model.QueueItem;
+import com.offbytwo.jenkins.model.QueueReference;
+
 import br.ce.wcaquino.pages.Cenarios_TelasPage;
 import br.ce.wcaquino.pages.LoginPage;
 import br.ce.wcaquino.utils.DataBaseUtils;
 import br.ce.wcaquino.utils.DataUtils;
 import br.ce.wcaquino.utils.GeraCpfCnpj;
+import br.ce.wcaquino.utils.JenkinsHelper;
 
 public class CY0012_Ativacao_ControleExpress_Test extends Cenarios_TelasPage{
 	
@@ -76,7 +84,7 @@ public class CY0012_Ativacao_ControleExpress_Test extends Cenarios_TelasPage{
 		//cenariostelas.checkNotEmail("teste@teste.com");
 		cenariostelas.setDataNasc("12102000");
 		cenariostelas.setNomeMae("maeteste");			
-		cenariostelas.setCEP("03178030");
+		cenariostelas.setCEPTroca("03178030");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
 		//cenariostelas.poupupClientes();
@@ -127,9 +135,74 @@ public class CY0012_Ativacao_ControleExpress_Test extends Cenarios_TelasPage{
 		
 					
 	// ######## INSERIR CHIP ########
-		cenariostelas.setCHIP("89550311000159016528");			
+				String simcard ="";
+				String res="";
+				String JobName = "Obter_massa";
+				JenkinsHelper jk = new JenkinsHelper();
+		        jk.init();
+		        int lastId=-1;
+		        int nextId=-1;
+		        Map<String,String> parametros = JenkinsHelper.getParametros();
+		        JobWithDetails job2 = jk.getJobByJobName(JobName);
+
+		        lastId = job2.getLastBuild().getNumber();
+		        nextId = job2.getNextBuildNumber();
+		        System.out.println("salidalast:" + lastId );
+		        System.out.println("salidanext:" + nextId );
+		        
+		        try {
+		            QueueReference queue = job2.build(parametros, true);
+		            QueueItem queueItem = null;
+		            int waitFor = 0;
+		            while (job2.details().isInQueue()) {
+		                waitFor++;
+		                Thread.sleep(5000);
+		                if (waitFor > 12) {
+		                    break;
+		                }
+		            }
+		            System.out.println("FIMQUEUE1:" + waitFor);
+		            waitFor = 0;
+		            do {
+		                waitFor++;
+		                Thread.sleep(5000);
+		                if (waitFor > 12) {
+		                    break;
+		                }
+		                queueItem = jk.getJenkins().getQueueItem(queue);
+		            } while (queueItem.getExecutable() == null);
+		            System.out.println("FIMQUEUE2:" + waitFor);
+		            Build build = jk.getJenkins().getBuild(queueItem);
+		            waitFor = 0;
+		            while(build.details().isBuilding()){
+		                waitFor++;
+		                Thread.sleep(5000);
+		                if (waitFor > 20) {
+		                    break;
+		                }
+		            }
+		            System.out.println("FIMQUEUE3:" + waitFor);
+
+		            String x1 = build.details().getConsoleOutputText();
+		            int p1 = x1.indexOf("---CHIP");
+		            if (p1 > 0) {
+		                System.out.println("Respuesta:" + x1.substring(p1+11,p1+31));
+		                simcard = x1.substring(p1+11,p1+31);
+		            }
+		            
+		        } catch (Exception e){
+		            e.printStackTrace();
+		        }
+		        
+		        conn = DataBaseUtils.newSiebelUAT1Connection();
+				boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
+						+ " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
+						, conn);
+				DataBaseUtils.closeConnection(conn);
+				//cenariostelas.setCHIP("89550310000003758235");		
+		cenariostelas.setCHIP(simcard);			
 		cenariostelas.proximoInserirCHIP();
-	
+			
 	
 	// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
@@ -137,7 +210,6 @@ public class CY0012_Ativacao_ControleExpress_Test extends Cenarios_TelasPage{
 	
 
 	// ######## CARTÃO DE CRÉDITO ########
-		
 		cenariostelas.setNumeroCartao("5506597606713371");
 		cenariostelas.clickMesValidade();
 		cenariostelas.escolhaMesValidade();

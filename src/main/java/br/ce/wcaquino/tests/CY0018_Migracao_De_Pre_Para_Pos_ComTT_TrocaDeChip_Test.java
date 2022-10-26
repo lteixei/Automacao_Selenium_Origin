@@ -81,13 +81,13 @@ public class CY0018_Migracao_De_Pre_Para_Pos_ComTT_TrocaDeChip_Test extends Cena
 				
 		
 		// ######## DADOS DO CLIENTE ########
-			cenariostelas.setNome("teste");			
-			cenariostelas.setEmailCliente("teste@teste.com");
+			//cenariostelas.setNome("teste");			
+			//cenariostelas.setEmailCliente("teste@teste.com");
 			//cenariostelas.confirmaEmail("teste@teste.com");
 			//cenariostelas.validaEmail();
 			//cenariostelas.checkNotEmail("teste@teste.com");
-			cenariostelas.setDataNasc("12102000");
-			cenariostelas.setNomeMae("maeteste");			
+			//cenariostelas.setDataNasc("12102000");
+			//cenariostelas.setNomeMae("maeteste");			
 			cenariostelas.setCEP("01311000");
 			cenariostelas.buscarCEP();
 			cenariostelas.proximoDadosClientes();
@@ -128,7 +128,7 @@ public class CY0018_Migracao_De_Pre_Para_Pos_ComTT_TrocaDeChip_Test extends Cena
 		// ######## INSERIR CHIP ########
 			cenariostelas.setCHIP("89550311000172253553");	
 			cenariostelas.clickMotivoTrocaChip();
-			cenariostelas.escolhaMotivoTrocaChip();
+			
 			cenariostelas.proximoInserirCHIP();
 		
 

@@ -55,70 +55,43 @@ public class CY0024_TrocaDePlano_Controle_Para_FamiliaMaster_Com_TrocaDeChip_Tes
 			//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 			//System.out.print("CPF:"+cpf);
 			//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			cenariostelas.setCPF("13968442016");
-			cenariostelas.setTelefone("11981161529");//11954336341
+			cenariostelas.setCPF("76152362580");
+			cenariostelas.setTelefone("11925688881");//11954336341
 			cenariostelas.proximoNovoAtendimento();
 						
 						
 		// ######## ATENDIMENTO ########
-			//cenariostelas.insertNovoTel("19981110003");
-			//cenariostelas.clickTimControle_A_Plus();
 			cenariostelas.clickTimControle_RedesSociais_4();
-			//cenariostelas.clickTimPreTop();
-			//cenariostelas.clickOpcao();
-			//cenariostelas.clickCampoDDD();
-			//cenariostelas.clickDDD();
 			cenariostelas.proximoAtendimento();
 						
 						
 		// ######## NO PÓS VENDA ########
-			//cenariostelas.insertNovoTel("19981110003");
-			//cenariostelas.clickMigracao();
-			//cenariostelas.clickMigracaoTT();
-			//cenariostelas.clickTrocaChip();
 			cenariostelas.clickTrocaPlano();
-			//cenariostelas.clickNovoProtocolo();
-			//cenariostelas.clickConsultarProtocolos();
-							
-					
-		// ######## DADOS DO CLIENTE ########
-			cenariostelas.setNome("teste");			
-			//cenariostelas.setEmailCliente("teste@teste.com");
-			//cenariostelas.confirmaEmail("teste@teste.com");
-			//cenariostelas.validaEmail();
-			cenariostelas.checkNotEmail();
-			cenariostelas.setDataNasc("12102000");
-			cenariostelas.setNomeMae("maeteste");			
-			cenariostelas.setCEP("01311000");
-			cenariostelas.buscarCEP();
-			cenariostelas.proximoDadosClientes();
-			cenariostelas.poupupClientes();
 									
 								
 		// ######## PLANOS ########
-			cenariostelas.clickPlanoTimBlackA3();
-			cenariostelas.clickFidelPlano_Apar();
-			cenariostelas.clickBotaoPlano();
-			cenariostelas.clickPopup();
+			cenariostelas.clickPlanoPosPagoFatura();
+			cenariostelas.clickPlanoTimBlack_A3();
+			cenariostelas.clickPlanoSemFidelizacao();
+			cenariostelas.clickBotaoProximoPos();
+			cenariostelas.clickPlanoPosPop_Up();
 									
-									
-		// ######## SERVIÇOS ########
-			cenariostelas.clickBotaoProsseguir();
-						
 						
 		// ######## PÓS VENDA ########
-			cenariostelas.clickFinalizar();
+			cenariostelas.clickTrocaChip();
 			
 						
 		// ######## INSERIR CHIP ########
-			cenariostelas.setCHIP("89550311000159016528");			
-			cenariostelas.proximoInserirCHIP();	
-						
+			cenariostelas.setCHIP("89550311000172250831");			
+			cenariostelas.clickMotivoTrocaChip();
+			cenariostelas.clickMotivoSemGarantia_TrocaChip();
+			cenariostelas.proximoTrocaCHIP();	
 
 		// ######## RESUMO DA OPERAÇÃO ########
-			//cenariostelas.checkCiente();
+			cenariostelas.checkCiente();
 			//cenariostelas.clickCriarPedido();
 			cenariostelas.clickCriarPedidoComDoc();
+			cenariostelas.clickPopupFim();
 
 		}
 	}

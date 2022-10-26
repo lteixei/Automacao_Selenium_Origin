@@ -43,7 +43,7 @@ public class CY0006_AtivacaoControleFatura_Test extends Cenarios_TelasPage{
 	@Test
 	public void test1_CY0006_AtivacaoControleFatura() throws InterruptedException{
 		cenariostelas.sendPDV("VAREJO_LASA_L229"); 
-		cenariostelas.EscolhaPDVDutra();
+		cenariostelas.EscolhaPDVVarejo();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
 		
@@ -87,7 +87,7 @@ public class CY0006_AtivacaoControleFatura_Test extends Cenarios_TelasPage{
 		cenariostelas.setCEP("03178030");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
-		cenariostelas.poupupClientes();
+		//cenariostelas.poupupClientes();
 	
 	
 	// ######## ENDEREÇO DO CLIENTE ########
@@ -114,8 +114,8 @@ public class CY0006_AtivacaoControleFatura_Test extends Cenarios_TelasPage{
 	
 	// ######## ESCOLHA O SEGMENTO ########
 		//cenariostelas.clickPrepago();			
-		cenariostelas.clickControleExpress();
-		//cenariostelas.clickControleFatura();
+		//cenariostelas.clickControleExpress();
+		cenariostelas.clickControleFatura();
 		//cenariostelas.clickControleFlex();			
 		//cenariostelas.clickPosPagoFtura();
 		//cenariostelas.clickPosPagoExpress();
@@ -125,42 +125,47 @@ public class CY0006_AtivacaoControleFatura_Test extends Cenarios_TelasPage{
 				
 	// ######## PLANOS ########
 		cenariostelas.clickPlano();
-		//cenariostelas.clickOpacao2();
+		cenariostelas.clickOpacao1();
 		//cenariostelas.clickPopup();
 		cenariostelas.clickBotaoPlano();
 					
 					
 	// ######## SERVIÇOS ########
 		cenariostelas.clickBotaoProsseguir();
+		
+		
+	// ######## INFORMAÇÃO DA FATURA ########
+		cenariostelas.clickDataVencimento();
+		cenariostelas.clickBotaoInfFatura();
 					
 					
-		// ######## INSERIR CHIP ########
-				String simcard ="";
-				String res="";
-				String JobName = "Obter_massa";
-				JenkinsHelper jk = new JenkinsHelper();
-		        jk.init();
-		        int lastId=-1;
-		        int nextId=-1;
-		        Map<String,String> parametros = JenkinsHelper.getParametros();
-		        JobWithDetails job2 = jk.getJobByJobName(JobName);
+	// ######## INSERIR CHIP ########
+		String simcard ="";
+		String res="";
+		String JobName = "Obter_massa";
+		JenkinsHelper jk = new JenkinsHelper();
+        jk.init();
+        int lastId=-1;
+        int nextId=-1;
+        Map<String,String> parametros = JenkinsHelper.getParametros();
+        JobWithDetails job2 = jk.getJobByJobName(JobName);
 
-		        lastId = job2.getLastBuild().getNumber();
-		        nextId = job2.getNextBuildNumber();
-		        System.out.println("salidalast:" + lastId );
-		        System.out.println("salidanext:" + nextId );
+        lastId = job2.getLastBuild().getNumber();
+        nextId = job2.getNextBuildNumber();
+	    System.out.println("salidalast:" + lastId );
+        System.out.println("salidanext:" + nextId );
 		        
-		        try {
-		            QueueReference queue = job2.build(parametros, true);
-		            QueueItem queueItem = null;
-		            int waitFor = 0;
-		            while (job2.details().isInQueue()) {
-		                waitFor++;
-		                Thread.sleep(5000);
-		                if (waitFor > 12) {
-		                    break;
-		                }
-		            }
+		  try {
+		      QueueReference queue = job2.build(parametros, true);
+		      QueueItem queueItem = null;
+		      int waitFor = 0;
+		      while (job2.details().isInQueue()) {
+		    	  waitFor++;
+		          Thread.sleep(5000);
+		          if (waitFor > 12) {
+		              break;
+		          }
+		          	}
 		            System.out.println("FIMQUEUE1:" + waitFor);
 		            waitFor = 0;
 		            do {
@@ -206,7 +211,7 @@ public class CY0006_AtivacaoControleFatura_Test extends Cenarios_TelasPage{
 	
 	// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
-		cenariostelas.proximoEscolhaNum();
+		cenariostelas.proximoEscolhaNum();	
 	
 
 	// ######## RESUMO DA OPERAÇÃO ########
