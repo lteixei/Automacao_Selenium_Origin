@@ -1,8 +1,6 @@
 package br.ce.wcaquino.tests;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.BeforeClass;
@@ -15,71 +13,71 @@ import com.offbytwo.jenkins.model.QueueReference;
 
 import br.ce.wcaquino.pages.Cenarios_TelasPage;
 import br.ce.wcaquino.pages.LoginPage;
+//import br.ce.wcaquino.pages.PDVPage;
 import br.ce.wcaquino.utils.DataBaseUtils;
 import br.ce.wcaquino.utils.DataUtils;
 import br.ce.wcaquino.utils.GeraCpfCnpj;
 import br.ce.wcaquino.utils.JenkinsHelper;
 
-
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CY0001_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
+public class CY0002_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 	
 	private Cenarios_TelasPage cenariostelas = new Cenarios_TelasPage();
 	private static LoginPage page = new LoginPage();
 	private GeraCpfCnpj gerarCpfCnpj = new GeraCpfCnpj();
 	private DataUtils dataUtils = new DataUtils();
 	private DataBaseUtils database = new DataBaseUtils();
+	
 		
 	// ######## LOGAR NO SISTEMA ########
 	@BeforeClass
 	public static void inicializa() throws InterruptedException{
-		page.acessarTelaInicial();//Abrindo Site/App
+		//Abrindo Site/App
+		page.acessarTelaInicial();
 		//Logando com Matricula e Senha
 		page.setEmail("T3313299");
 		page.setSenha("Tim@12345");
 		page.entrar();
 	}
-	
-	
+
+
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
-	public void test1_CY0001_AtivacaoDeAcessoPrePago() throws InterruptedException{
-		cenariostelas.sendPDV("MORUMBI"); 
-		cenariostelas.EscolhaPDVMorumbi();
+	public void test1_CY0002_AtivacaoDeAcessoPrePago() throws InterruptedException{
+		cenariostelas.sendPDV("VAREJO"); 
+		cenariostelas.EscolhaPDVVarejo();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
-		
-		
-	// ######## ESCOLHA O PRODUTO ########
+
+
+		// ######## ESCOLHA O PRODUTO ########
 		cenariostelas.escolherProduto();
-		
-		
-	// ######## AMBIENTE DE ATENDIMENTO ########
+
+
+		// ######## AMBIENTE DE ATENDIMENTO ########
 		cenariostelas.clickAntesAtendimento();
 		cenariostelas.clickAtendimento();
 		cenariostelas.proximoAmbienteAtend();
-		
-		
-	// ######## NOVO ATENDIMENTO ########
+
+
+		// ######## NOVO ATENDIMENTO ########
 		String cpf = gerarCpfCnpj.cpf(false);
 		Connection conn = DataBaseUtils.newCrivoConnection();
-		//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 		System.out.print("CPF:"+cpf);
 		boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-		DataBaseUtils.closeConnection(conn);
 		cenariostelas.setCPF(cpf);
 		cenariostelas.setTelefone("15964738960");
 		cenariostelas.proximoNovoAtendimento();
-		
-		
-	// ######## ATENDIMENTO ########
+
+
+		// ######## ATENDIMENTO ########
 		cenariostelas.clickOpcao();
 		cenariostelas.clickCampoDDD();
 		cenariostelas.clickDDD();
 		cenariostelas.proximoAtendimento();
-			
-	
-	// ######## DADOS DO CLIENTE ########
+
+
+		// ######## DADOS DO CLIENTE ########
 		cenariostelas.setNome("teste");			
 		cenariostelas.setEmailCliente("teste@teste.com");
 		cenariostelas.confirmaEmail("teste@teste.com");
@@ -89,17 +87,17 @@ public class CY0001_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.setCEP("18320971");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
-	
-	
-	// ######## ENDEREÇO DO CLIENTE ########
+
+
+		// ######## ENDEREÇO DO CLIENTE ########
 		cenariostelas.clickAntesLogradouro();
 		cenariostelas.clickTipoLogradouro();
 		cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
 		cenariostelas.proximoEnderecoClientes();
-	
-		
-	// ######## DADOS COMPLEMENTARES ########
+
+
+		// ######## DADOS COMPLEMENTARES ########
 		cenariostelas.clickSexoFeminino();			
 		cenariostelas.ckickAntesEscolherDoc();
 		cenariostelas.ckicEscolherDocID();
@@ -110,38 +108,98 @@ public class CY0001_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.clickUF();
 		cenariostelas.setTelContato("15964738960");
 		cenariostelas.proximoDadosComplementares();
-	
-	
-	// ######## ESCOLHA O SEGMENTO ########
+
+
+		// ######## ESCOLHA O SEGMENTO ########
 		cenariostelas.clickPrepago();			
-		
-	
-	// ######## ESCOLHA A OFERTA ########
-		cenariostelas.clickOferta1();
+
+
+		// ######## ESCOLHA A OFERTA ########
+		cenariostelas.clickOferta1();  
 		cenariostelas.fechaPopup();
 		cenariostelas.proximoOferta();
-		
-	
-	// ######## INSERIR CHIP ########
-        
-        conn = DataBaseUtils.newSiebelUAT1Connection();
+
+
+		// ######## INSERIR CHIP ########
+		String simcard ="";
+		String res="";
+		String JobName = "Obter_massa";
+		JenkinsHelper jk = new JenkinsHelper();
+		jk.init();
+		int lastId=-1;
+		int nextId=-1;
+		Map<String,String> parametros = JenkinsHelper.getParametros();
+		JobWithDetails job2 = jk.getJobByJobName(JobName);
+
+		lastId = job2.getLastBuild().getNumber();
+		nextId = job2.getNextBuildNumber();
+		System.out.println("salidalast:" + lastId );
+		System.out.println("salidanext:" + nextId );
+
+		try {
+			QueueReference queue = job2.build(parametros, true);
+			QueueItem queueItem = null;
+			int waitFor = 0;
+			while (job2.details().isInQueue()) {
+				waitFor++;
+				Thread.sleep(5000);
+				if (waitFor > 12) {
+					break;
+				}
+			}
+			System.out.println("FIMQUEUE1:" + waitFor);
+			waitFor = 0;
+			do {
+				waitFor++;
+				Thread.sleep(5000);
+				if (waitFor > 12) {
+					break;
+				}
+				queueItem = jk.getJenkins().getQueueItem(queue);
+			} while (queueItem.getExecutable() == null);
+			System.out.println("FIMQUEUE2:" + waitFor);
+			Build build = jk.getJenkins().getBuild(queueItem);
+			waitFor = 0;
+			while(build.details().isBuilding()){
+				waitFor++;
+				Thread.sleep(5000);
+				if (waitFor > 20) {
+					break;
+				}
+			}
+			System.out.println("FIMQUEUE3:" + waitFor);
+
+			String x1 = build.details().getConsoleOutputText();
+			int p1 = x1.indexOf("---CHIP");
+			if (p1 > 0) {
+				System.out.println("Respuesta:" + x1.substring(p1+11,p1+31));
+				simcard = x1.substring(p1+11,p1+31);
+			}
+
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		conn = DataBaseUtils.newSiebelUAT1Connection();
 		boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
-				+ " TAKEN_NUM = 'Available',ORDER_ID = null WHERE ROW_ID in ("
-				+ " select ROW_ID from cx_num_invent where 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5)"
+				+ " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
 				, conn);
 		DataBaseUtils.closeConnection(conn);
-		cenariostelas.setCHIP("89550311000172351126");		
-		//cenariostelas.setCHIP(simcard);
+		cenariostelas.setCHIP(simcard);			
 		cenariostelas.proximoInserirCHIP();
-	
-	
-	// ######## ESCOLHA DE NUMERO ########
+
+
+		// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
 		cenariostelas.proximoEscolhaNum();
-	
 
-	// ######## RESUMO DA OPERAÇÃO ########
+
+		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedido();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        cenariostelas.encerra();
 	}	
 }

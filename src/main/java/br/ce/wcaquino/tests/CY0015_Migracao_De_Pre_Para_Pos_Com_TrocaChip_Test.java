@@ -1,6 +1,8 @@
 package br.ce.wcaquino.tests;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,115 +19,159 @@ public class CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test extends Cenarios
 	private GeraCpfCnpj gerarCpfCnpj = new GeraCpfCnpj();
 	private DataUtils dataUtils = new DataUtils();
 	private DataBaseUtils database = new DataBaseUtils();
+	private String ResgataChip = "Select SM6.SM_SERIALNUM From STORAGE_MEDIUM SMIX, "
+            + "SRVEST_ESTOQUE@DB_P2K P2K, "
+            + "STORAGE_MEDIUM@BSCSIX_TO_BSCS6_LINK SM6, "
+            + "PORT PIX, "
+            + "PORT@BSCSIX_TO_BSCS6_LINK P6, "
+            + "HLR_AREA@BSCSIX_TO_BSCS6_LINK HA, "
+            + "MPDHLTAB@BSCSIX_TO_BSCS6_LINK HL, "
+            + "AREA@BSCSIX_TO_BSCS6_LINK A "
+            + "Where SMIX.SM_ID = SM6.SM_ID "
+            + "And PIX.PORT_ID = P6.PORT_ID "
+            + "And SMIX.SM_ID = PIX.SM_ID "
+            + "And SM6.SM_ID = P6.SM_ID "
+            + "And SMIX.SM_STATUS = 'r' "
+            + "And SM6.SM_STATUS = 'r' "
+            + "And PIX.PORT_STATUS = 'r' "
+            + "And P6.PORT_STATUS = 'r' "
+            + "And SM6.SM_SERIALNUM Like '%8955031%' "
+            + "And SM6.SM_SERIALNUM = P2K.ID_PRODUTO "
+            + "And P2K.qtd_estoque_inicial = 1 "
+            + "And P2K.qtd_reservada = 0 "
+            + "And P2K.qtd_vendida = 0 "
+            + "And P2K.cod_loja = 181 "
+            + "And P6.HLCODE = HA.HLCODE "
+            + "And HL.HLCODE = HA.HLCODE "
+            + "And HA.AREA_ID = A.AREA_ID "
+            + "And HL.SWITCH_ID In ('1', '2', '3') "
+            + "And A.AREA_DESC = 'SP_15' and rownum <5 ";
 		
 	
 	// ######## LOGAR NO SISTEMA ########
-		@BeforeClass
-		public static void inicializa() throws InterruptedException{
+	@BeforeClass
+	public static void inicializa() throws InterruptedException{
 		//Abrindo Site/App
-			page.acessarTelaInicial();
+		page.acessarTelaInicial();
 		//Logando com Matricula e Senha
-			page.setEmail("T3313299");
-			page.setSenha("Tim@12345");
-			page.entrar();
+		page.setEmail("T3313299");
+		page.setSenha("Tim@12345");
+		page.entrar();
 	}
-	
-	
+
+
 	// ######## IDENTIFICAÇÃO DE PDV ########
-		@Test
-		public void test1_CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test() throws InterruptedException{
-			cenariostelas.sendPDV("MORUMBI"); 
-			cenariostelas.EscolhaPDVMorumbi();
-			cenariostelas.confirmaPDV();
-			cenariostelas.fechapopupPDV();
-			
-			
+	@Test
+	public void test1_CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test() throws InterruptedException{
+		cenariostelas.sendPDV("MORUMBI"); 
+		cenariostelas.EscolhaPDVMorumbi();
+		cenariostelas.confirmaPDV();
+		cenariostelas.fechapopupPDV();
+
+
 		// ######## ESCOLHA O PRODUTO ########
-			cenariostelas.escolherProduto();
-			
-			
+		cenariostelas.escolherProduto();
+
+
 		// ######## AMBIENTE DE ATENDIMENTO ########
-			cenariostelas.clickAntesAtendimento();
-			cenariostelas.clickAtendimento();
-			cenariostelas.proximoAmbienteAtend();
-			
-			
+		cenariostelas.clickAntesAtendimento();
+		cenariostelas.clickAtendimento();
+		cenariostelas.proximoAmbienteAtend();
+
+
 		// ######## NOVO ATENDIMENTO ########
-			//String cpf = gerarCpfCnpj.cpf(false);
-			//Connection conn = DataBaseUtils.newCrivoConnection();
-			//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			//System.out.print("CPF:"+cpf);
-			//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-			cenariostelas.setCPF("09367277644");
-			cenariostelas.setTelefone("11924688881");
-			cenariostelas.proximoNovoAtendimento();
-			
-			
+		cenariostelas.setCPF("09367277644");
+		cenariostelas.setTelefone("11924688881");
+		cenariostelas.proximoNovoAtendimento();
+
+
 		// ######## ATENDIMENTO ########
-			cenariostelas.clickTimPreTop();
-			cenariostelas.proximoAtendimento();
-			
-			
+		cenariostelas.clickTimPreTop();
+		cenariostelas.proximoAtendimento();
+
+
 		// ######## NO PÓS VENDA ########
-			cenariostelas.clickMigracao();
-						
-		
+		cenariostelas.clickMigracao();
+
+
 		// ######## DADOS DO CLIENTE ########
-			//cenariostelas.setNome("teste");			
-			//cenariostelas.setDataNasc("12102000");
-			//cenariostelas.setNomeMae("maeteste");			
-			//cenariostelas.setCEP("03178030");
-			cenariostelas.buscarCEP();
-			cenariostelas.proximoDadosClientes();
-					
-		
+		//cenariostelas.setNome("teste");			
+		//cenariostelas.setDataNasc("12102000");
+		//cenariostelas.setNomeMae("maeteste");			
+		//cenariostelas.setCEP("03178030");
+		cenariostelas.buscarCEP();
+		cenariostelas.proximoDadosClientes();
+
+
 		// ######## MIGRACAO ########
-			cenariostelas.clickPre_PosPago_Fatura();
-						
-					
+		cenariostelas.clickPre_PosPago_Fatura();
+
+
 		// ######## PLANOS ########
-			cenariostelas.clickPlanoTimBlackA3();
-			cenariostelas.clickFidelApar();
-			cenariostelas.clickBotaoPlano();
-						
-						
+		cenariostelas.clickPlanoTimBlackA3();
+		cenariostelas.clickFidelApar();
+		cenariostelas.clickBotaoPlano();
+
+
 		// ######## SERVIÇOS ########
-			cenariostelas.clickBotaoProsseguir();
-						
-						
+		cenariostelas.clickBotaoProsseguir();
+
+
 		// ######## FIDELIZAÇÃO DE APARELHO ########
-			cenariostelas.clickPopupIMEI();
-			cenariostelas.setIMEI("869939148707358");
-			cenariostelas.validarIMEI();
-			cenariostelas.clickBotaoFidelAparelho();
-		
-								
+		cenariostelas.clickPopupIMEI();
+		cenariostelas.setIMEI("869939148707358");
+		cenariostelas.validarIMEI();
+		cenariostelas.clickBotaoFidelAparelho();
+
+
 		// ######## INFORMAÇÃO DA FATURA ########
-			cenariostelas.clickDataVencimento();
-			cenariostelas.clickDebitoAtutomatico();
-			cenariostelas.clickBanco();
-			cenariostelas.escolhaBanco();
-			cenariostelas.setAgencia("3553");
-			cenariostelas.setConta("11904313");
-			cenariostelas.clickBotaoInfFatura();
-			
-						
-		// ######## PÓS VENDA ########
-			cenariostelas.clickTrocaChip();			
-						
-			
-		// ######## TROCA DE CHIP ########
-			cenariostelas.setTrocaCHIP("89550311000172250658");
-			cenariostelas.clickMotivoTrocaChip();
-			cenariostelas.clickMotivoSemGarantia_TrocaChip();
-			//cenariostelas.clickMotivoComGarantia_TrocaChip();
-			cenariostelas.proximoTrocaCHIP();
+		cenariostelas.clickDataVencimento();
+		cenariostelas.clickDebitoAtutomatico();
+		cenariostelas.clickBanco();
+		cenariostelas.escolhaBanco();
+		cenariostelas.setAgencia("3553");
+		cenariostelas.setConta("11904313");
+		cenariostelas.clickBotaoInfFatura();
 		
+		
+		// ######## BUSCA E INSERE TELEFONE ########
+		Connection conn = DataBaseUtils.newSiebelUAT1Connection();
+        boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
+                + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
+                , conn);
+        DataBaseUtils.closeConnection(conn);
+
+
+		// ######## PÓS VENDA ########
+		cenariostelas.clickTrocaChip();			
+
+
+		// ######## INSERIR CHIP LOJA PRÓPRIA ########
+        conn = DataBaseUtils.newBSCSIXConnection();
+        ResultSet respChip =  database.executeAndReturnFirstResult(ResgataChip
+                , conn);
+        String chip = "";
+        try {
+            chip = respChip.getString(1);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        DataBaseUtils.closeConnection(conn);
+        
+        
+        // ######## CONT...INSERIR CHIP ########
+        cenariostelas.setCHIP(chip);
+		cenariostelas.clickMotivoTrocaChip();
+		cenariostelas.clickMotivoSemGarantia_TrocaChip();
+		//cenariostelas.clickMotivoComGarantia_TrocaChip();
+		cenariostelas.proximoInserirCHIP();
+
 
 		// ######## RESUMO DA OPERAÇÃO ########
-			cenariostelas.checkCiente();
-			//cenariostelas.clickCriarPedido();
-			cenariostelas.clickCriarPedidoComDoc();
-				
-		}
+		cenariostelas.checkCiente();
+		//cenariostelas.clickCriarPedido();
+		cenariostelas.clickCriarPedidoComDoc();
+
 	}
+}

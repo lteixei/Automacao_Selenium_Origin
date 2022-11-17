@@ -6,7 +6,7 @@ import br.ce.wcaquino.core.DriverFactory;
 public class LoginPage extends BasePage {
 	
 	public void acessarTelaInicial(){
-		DriverFactory.getDriver().get("https://apptimvendasdev.internal.timbrasil.com.br/28_0_27_UAT1/#/login");
+		DriverFactory.getDriver().get("https://apptimvendasdev.internal.timbrasil.com.br/29_0_13_UAT1/#/login");
 	}
 	
 	public void setEmail(String matricula) throws InterruptedException {

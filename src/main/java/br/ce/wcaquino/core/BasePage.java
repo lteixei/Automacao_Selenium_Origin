@@ -8,12 +8,8 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import com.gargoylesoftware.htmlunit.javascript.host.file.File;
 
 public class BasePage {
 	
@@ -279,4 +275,9 @@ public class BasePage {
 		}
 		return idColuna;
 	}
+	
+    public void encerra() throws InterruptedException {
+        Thread.sleep(30000);
+	    getDriver().quit();
+    }
 }

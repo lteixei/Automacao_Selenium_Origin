@@ -1,6 +1,8 @@
 package br.ce.wcaquino.tests;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,6 +20,34 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 	private GeraCpfCnpj gerarCpfCnpj = new GeraCpfCnpj();
 	private DataUtils dataUtils = new DataUtils();
 	private DataBaseUtils database = new DataBaseUtils();
+	private String ResgataChip = "Select SM6.SM_SERIALNUM From STORAGE_MEDIUM SMIX, "
+            + "SRVEST_ESTOQUE@DB_P2K P2K, "
+            + "STORAGE_MEDIUM@BSCSIX_TO_BSCS6_LINK SM6, "
+            + "PORT PIX, "
+            + "PORT@BSCSIX_TO_BSCS6_LINK P6, "
+            + "HLR_AREA@BSCSIX_TO_BSCS6_LINK HA, "
+            + "MPDHLTAB@BSCSIX_TO_BSCS6_LINK HL, "
+            + "AREA@BSCSIX_TO_BSCS6_LINK A "
+            + "Where SMIX.SM_ID = SM6.SM_ID "
+            + "And PIX.PORT_ID = P6.PORT_ID "
+            + "And SMIX.SM_ID = PIX.SM_ID "
+            + "And SM6.SM_ID = P6.SM_ID "
+            + "And SMIX.SM_STATUS = 'r' "
+            + "And SM6.SM_STATUS = 'r' "
+            + "And PIX.PORT_STATUS = 'r' "
+            + "And P6.PORT_STATUS = 'r' "
+            + "And SM6.SM_SERIALNUM Like '%8955031%' "
+            + "And SM6.SM_SERIALNUM = P2K.ID_PRODUTO "
+            + "And P2K.qtd_estoque_inicial = 1 "
+            + "And P2K.qtd_reservada = 0 "
+            + "And P2K.qtd_vendida = 0 "
+            + "And P2K.cod_loja = 181 "
+            + "And P6.HLCODE = HA.HLCODE "
+            + "And HL.HLCODE = HA.HLCODE "
+            + "And HA.AREA_ID = A.AREA_ID "
+            + "And HL.SWITCH_ID In ('1', '2', '3') "
+            + "And A.AREA_DESC = 'SP_15' and rownum <5 ";
+        
 		
 	
 	// ######## LOGAR NO SISTEMA ########
@@ -30,8 +60,8 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 		page.setSenha("Tim@12345");
 		page.entrar();
 	}
-	
-	
+
+
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
 	public void test1_CY0016_MigracaoPre_Para_PosExpress_Com_TrocaDeChip() throws InterruptedException{
@@ -39,99 +69,122 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 		cenariostelas.EscolhaPDVMorumbi();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
-		
-		
-	// ######## ESCOLHA O PRODUTO ########
+
+
+		// ######## ESCOLHA O PRODUTO ########
 		cenariostelas.escolherProduto();
-		
-		
-	// ######## AMBIENTE DE ATENDIMENTO ########
+
+
+		// ######## AMBIENTE DE ATENDIMENTO ########
 		cenariostelas.clickAntesAtendimento();
 		cenariostelas.clickAtendimento();
 		cenariostelas.proximoAmbienteAtend();
-		
-		
-	// ######## NOVO ATENDIMENTO ########
+
+
+		// ######## NOVO ATENDIMENTO ########
 		//String cpf = gerarCpfCnpj.cpf(false);
 		//Connection conn = DataBaseUtils.newCrivoConnection();
 		//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
 		//System.out.print("CPF:"+cpf);
 		//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-		cenariostelas.setCPF("03359372506");//### CPF TIM-PRÉ ###
+		cenariostelas.setCPF("04250869091");//### CPF TIM-PRÉ ###
 		cenariostelas.setTelefone("11996787821");
 		cenariostelas.proximoNovoAtendimento();
-		
-		
-	// ######## ATENDIMENTO ########
+
+
+		// ######## ATENDIMENTO ########
 		cenariostelas.clickTimPreTop();
 		//cenariostelas.clickCampoDDD();
 		//cenariostelas.clickDDD();
 		cenariostelas.proximoAtendimento();
-		
-			
-	// ######## NO PÓS VENDA ########
+
+
+		// ######## NO PÓS VENDA ########
 		cenariostelas.clickMigracao();
 		//cenariostelas.clickTrocaChip();
 		//cenariostelas.clickNovoProtocolo();
 		//cenariostelas.clickConsultarProtocolos();	
-		
-	
-	// ######## DADOS DO CLIENTE ########
+
+
+		// ######## DADOS DO CLIENTE ########
 		//cenariostelas.setNome("teste");			
-		cenariostelas.setEmailCliente("teste@teste.com");
+		//cenariostelas.setEmailCliente("teste@teste.com");
 		//cenariostelas.confirmaEmail("teste@teste.com");
 		//cenariostelas.validaEmail();
 		//cenariostelas.checkNotEmail("teste@teste.com");
 		//cenariostelas.setDataNasc("12102000");
 		//cenariostelas.setNomeMae("maeteste");			
-		cenariostelas.setCEPTroca("03178030");
+		//cenariostelas.setCEPTroca("03178030");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
 		//cenariostelas.poupupClientes();
-		
-		
-	// ######## MIGRACAO ########
+
+
+		// ######## MIGRACAO ########
 		//cenariostelas.poupupClientes();
 		cenariostelas.clickPre_PosPago_Express();
-	
-	
-	// ######## PLANOS ########
+
+
+		// ######## PLANOS ########
 		cenariostelas.clickPlanoBlack_A_Express_2();
 		//cenariostelas.clickFidelApar();
 		cenariostelas.clickBotaoBlackExpress();
-		
-		
-	// ######## CARTÃO DE CRÉDITO ########
+
+
+		// ######## CARTÃO DE CRÉDITO ########
 		cenariostelas.setNumeroCartao("5506597606713371");
 		cenariostelas.clickMesValidade();
 		cenariostelas.escolhaMesValidade();
 		cenariostelas.clickAnoValidade();
 		cenariostelas.escolhaAnoValidade();
 		cenariostelas.setCodSeguranca("397");
-		cenariostelas.clickConfPagamento();	
+		cenariostelas.clickConfPagamento();
 		
 		
-	// ######## NO PÓS VENDA ########
+		// ######## BUSCA E INSERE TELEFONE ########
+		Connection conn = DataBaseUtils.newSiebelUAT1Connection();
+        boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
+                + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
+                , conn);
+        DataBaseUtils.closeConnection(conn);
+
+
+		// ######## NO PÓS VENDA ########
 		//cenariostelas.clickMigracao();
 		cenariostelas.clickTrocaChip();
 		//cenariostelas.clickNovoProtocolo();
 		//cenariostelas.clickConsultarProtocolos();	
-					
-					
-	// ######## TROCA DE CHIP ########
-		cenariostelas.setTrocaCHIP("89550311000172351126");
+
+
+		// ######## INSERIR CHIP LOJA PRÓPRIA ########
+        conn = DataBaseUtils.newBSCSIXConnection();
+        ResultSet respChip =  database.executeAndReturnFirstResult(ResgataChip
+                , conn);
+        String chip = "";
+        try {
+            chip = respChip.getString(1);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        DataBaseUtils.closeConnection(conn);
+        
+        
+        // ######## CONT...INSERIR CHIP ########
+        cenariostelas.setCHIP(chip);
+        cenariostelas.proximoInserirCHIP();
 		cenariostelas.clickMotivoTrocaChip();
 		cenariostelas.clickMotivoSemGarantia_TrocaChip();
 		//cenariostelas.clickMotivoComGarantia_TrocaChip();
-		cenariostelas.proximoTrocaCHIP();
-	
-	
-	// ######## ESCOLHA DE NUMERO ########
-		cenariostelas.clickNumero();			
-		cenariostelas.proximoEscolhaNum();
-	
+		cenariostelas.proximoInserirCHIP();
 
-	// ######## RESUMO DA OPERAÇÃO ########
+
+		// ######## ESCOLHA DE NUMERO ########
+		//cenariostelas.clickNumero();			
+		//cenariostelas.proximoEscolhaNum();
+
+
+		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();

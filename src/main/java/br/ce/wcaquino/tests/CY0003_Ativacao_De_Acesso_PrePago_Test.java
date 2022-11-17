@@ -13,14 +13,13 @@ import com.offbytwo.jenkins.model.QueueReference;
 
 import br.ce.wcaquino.pages.Cenarios_TelasPage;
 import br.ce.wcaquino.pages.LoginPage;
-//import br.ce.wcaquino.pages.PDVPage;
 import br.ce.wcaquino.utils.DataBaseUtils;
 import br.ce.wcaquino.utils.DataUtils;
 import br.ce.wcaquino.utils.GeraCpfCnpj;
 import br.ce.wcaquino.utils.JenkinsHelper;
 
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
+public class CY0003_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 	
 	private Cenarios_TelasPage cenariostelas = new Cenarios_TelasPage();
 	private static LoginPage page = new LoginPage();
@@ -43,9 +42,9 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 	
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
-	public void test1_CY0002_AtivacaoDeAcessoPrePago() throws InterruptedException{
-		cenariostelas.sendPDV("VAREJO"); 
-		cenariostelas.EscolhaPDVVarejo();
+	public void test1_CY0003_AtivacaoDeAcessoPrePago() throws InterruptedException{
+	    cenariostelas.sendPDV("E A DUTRA"); 
+		cenariostelas.EscolhaPDVDutra();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
 		
@@ -84,15 +83,13 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.validaEmail();
 		cenariostelas.setDataNasc("12102000");
 		cenariostelas.setNomeMae("maeteste");			
-		cenariostelas.setCEP("18320971");
+		cenariostelas.setCEP("12233001");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
+		
 	
 	
 	// ######## ENDEREÇO DO CLIENTE ########
-		cenariostelas.clickAntesLogradouro();
-		cenariostelas.clickTipoLogradouro();
-		cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
 		cenariostelas.proximoEnderecoClientes();
 	
@@ -115,16 +112,17 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
 		
 	
 	// ######## ESCOLHA A OFERTA ########
-		cenariostelas.clickOferta1();  
+		cenariostelas.clickOferta1();
 		cenariostelas.fechaPopup();
 		cenariostelas.proximoOferta();
 		
-	
+		
 	// ######## INSERIR CHIP ########
+		//cenariostelas.setCHIP("89550310000003758235");			
 		String simcard ="";
-		String res="";
-		String JobName = "Obter_massa";
-		JenkinsHelper jk = new JenkinsHelper();
+        String res="";
+        String JobName = "Obter_massa";
+        JenkinsHelper jk = new JenkinsHelper();
         jk.init();
         int lastId=-1;
         int nextId=-1;
@@ -135,7 +133,7 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
         nextId = job2.getNextBuildNumber();
         System.out.println("salidalast:" + lastId );
         System.out.println("salidanext:" + nextId );
-        
+
         try {
             QueueReference queue = job2.build(parametros, true);
             QueueItem queueItem = null;
@@ -175,28 +173,31 @@ public class CY0002_AtivacaoDeAcessoPrePago_Test extends Cenarios_TelasPage{
                 System.out.println("Respuesta:" + x1.substring(p1+11,p1+31));
                 simcard = x1.substring(p1+11,p1+31);
             }
-            
+
         } catch (Exception e){
             e.printStackTrace();
         }
-        
+
         conn = DataBaseUtils.newSiebelUAT1Connection();
-		boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
-				+ " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
-				, conn);
-		DataBaseUtils.closeConnection(conn);
-		//cenariostelas.setCHIP("89550310000003758235");		
-		cenariostelas.setCHIP(simcard);			
-		cenariostelas.proximoInserirCHIP();
+        boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
+                + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
+                , conn);
+        DataBaseUtils.closeConnection(conn);
+        cenariostelas.setCHIP(simcard);         
+        cenariostelas.proximoInserirCHIP();
 	
 	
 	// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
 		cenariostelas.proximoEscolhaNum();
+		
 	
-
 	// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedido();
+		
+		
+	// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}	
 }

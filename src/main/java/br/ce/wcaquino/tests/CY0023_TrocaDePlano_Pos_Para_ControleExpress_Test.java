@@ -19,78 +19,78 @@ public class CY0023_TrocaDePlano_Pos_Para_ControleExpress_Test extends Cenarios_
 		
 	
 	// ######## LOGAR NO SISTEMA ########
-		@BeforeClass
-		public static void inicializa() throws InterruptedException{
-			//Abrindo Site/App
-			page.acessarTelaInicial();
-			//Logando com Matricula e Senha
-			page.setEmail("T3313299");
-			page.setSenha("Tim@12345");
-			page.entrar();
-		}
-		
-		
-		// ######## IDENTIFICAÇÃO DE PDV ########
-		@Test
-		public void test1_CY0023_TrocaDePlano_PosParaControleExpress() throws InterruptedException{
-			cenariostelas.sendPDV("E A DUTRA"); 
-			cenariostelas.EscolhaPDVDutra();
-			cenariostelas.confirmaPDV();
-			cenariostelas.fechapopupPDV();
-			
-			
+	@BeforeClass
+	public static void inicializa() throws InterruptedException{
+		//Abrindo Site/App
+		page.acessarTelaInicial();
+		//Logando com Matricula e Senha
+		page.setEmail("T3313299");
+		page.setSenha("Tim@12345");
+		page.entrar();
+	}
+
+
+	// ######## IDENTIFICAÇÃO DE PDV ########
+	@Test
+	public void test1_CY0023_TrocaDePlano_PosParaControleExpress() throws InterruptedException{
+		cenariostelas.sendPDV("E A DUTRA"); 
+		cenariostelas.EscolhaPDVDutra();
+		cenariostelas.confirmaPDV();
+		cenariostelas.fechapopupPDV();
+
+
 		// ######## ESCOLHA O PRODUTO ########
-			cenariostelas.escolherProduto();
-			
-			
+		cenariostelas.escolherProduto();
+
+
 		// ######## AMBIENTE DE ATENDIMENTO ########
-			cenariostelas.clickAntesAtendimento();
-			cenariostelas.clickAtendimento();
-			cenariostelas.proximoAmbienteAtend();
-			
-			
+		cenariostelas.clickAntesAtendimento();
+		cenariostelas.clickAtendimento();
+		cenariostelas.proximoAmbienteAtend();
+
+
 		// ######## NOVO ATENDIMENTO ########
-			cenariostelas.setCPF("14464983367");//14464983367
-			cenariostelas.setTelefone("48996012110");//48996012110
-			cenariostelas.proximoNovoAtendimento();
-			
-			
+		cenariostelas.setCPF("99643957365");
+		cenariostelas.setTelefone("48996012110");
+		cenariostelas.proximoNovoAtendimento();
+
+
 		// ######## ATENDIMENTO ########
-			cenariostelas.clickBasicoPosPagoMovel();
-			cenariostelas.proximoAtendimento();
-			
-			
+		cenariostelas.clickBasicoPosPagoMovel();
+		cenariostelas.proximoAtendimento();
+
+
 		// ######## NO PÓS VENDA ########
-			cenariostelas.clickTrocaPlano();
-						
-					
+		cenariostelas.clickTrocaPlano();
+
+
 		// ######## PLANOS ########
-			cenariostelas.clickPlano4();
-			cenariostelas.clickPlano4_A();
-			cenariostelas.clickBotaoPlano();
-			cenariostelas.clickPopupSim();
-			
-			
+		cenariostelas.clickPlano4();
+		cenariostelas.clickPlano4_A();
+		cenariostelas.clickBotaoPlano();
+
+
 		// ######## SERVIÇOS ########
-			cenariostelas.clickBotaoProsseguir();
-			
-			
+		cenariostelas.clickBotaoProsseguir();
+
+
 		// ######## CARTÃO DE CRÉDITO ########
-			cenariostelas.setNumeroCartao("5506597606713371");
-			cenariostelas.clickMesValidade();
-			cenariostelas.escolhaMesValidade();
-			cenariostelas.clickAnoValidade();
-			cenariostelas.escolhaAnoValidade();
-			cenariostelas.setCodSeguranca("397");
-			cenariostelas.clickConfPagamento();	
-						
-						
+		cenariostelas.setNumeroCartao("5506597606713371");
+		cenariostelas.clickMesValidade();
+		cenariostelas.escolhaMesValidade();
+		cenariostelas.clickAnoValidade();
+		cenariostelas.escolhaAnoValidade();
+		cenariostelas.setCodSeguranca("397");
+		cenariostelas.clickConfPagamento();	
+
+
 		// ######## PÓS VENDA ########
-			cenariostelas.clickFinalizar();	
-			
+		cenariostelas.clickFinalizar();	
+
 
 		// ######## RESUMO DA OPERAÇÃO ########
-			cenariostelas.checkCiente();
-			cenariostelas.clickCriarPedidoComDoc();
-		}
+		cenariostelas.checkCiente();
+		cenariostelas.clickCriarPedido();
+		cenariostelas.clickPopup();
 	}
+}

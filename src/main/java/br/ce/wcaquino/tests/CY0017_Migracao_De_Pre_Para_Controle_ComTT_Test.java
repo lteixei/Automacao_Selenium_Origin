@@ -28,8 +28,8 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 		page.setSenha("Tim@12345");
 		page.entrar();
 	}
-	
-	
+
+
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
 	public void test1_CY0012_AtivacaoControleExpress() throws InterruptedException{
@@ -37,19 +37,19 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 		cenariostelas.EscolhaPDVVarejo();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
-		
-		
-	// ######## ESCOLHA O PRODUTO ########
+
+
+		// ######## ESCOLHA O PRODUTO ########
 		cenariostelas.escolherProduto();
-		
-		
-	// ######## AMBIENTE DE ATENDIMENTO ########
+
+
+		// ######## AMBIENTE DE ATENDIMENTO ########
 		cenariostelas.clickAntesAtendimento();
 		cenariostelas.clickAtendimento();
 		cenariostelas.proximoAmbienteAtend();
-		
-		
-	// ######## NOVO ATENDIMENTO ########
+
+
+		// ######## NOVO ATENDIMENTO ########
 		//String cpf = gerarCpfCnpj.cpf(false);
 		//Connection conn = DataBaseUtils.newCrivoConnection();
 		//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
@@ -58,18 +58,18 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 		cenariostelas.setCPF("28185517223");
 		cenariostelas.setTelefone("11954336341");
 		cenariostelas.proximoNovoAtendimento();
-		
-		
-	// ######## ATENDIMENTO ########
+
+
+		// ######## ATENDIMENTO ########
 		cenariostelas.insertNovoTel("19981110003");
 		cenariostelas.proximoAtendimento();
-		
-		
-	// ######## NO PÓS VENDA ########
+
+
+		// ######## NO PÓS VENDA ########
 		cenariostelas.clickMigracaoTT();
-		
-	
-	// ######## DADOS DO CLIENTE ########
+
+
+		// ######## DADOS DO CLIENTE ########
 		//cenariostelas.setNome("teste");			
 		//cenariostelas.setEmailCliente("teste@teste.com");
 		//cenariostelas.setDataNasc("12102000");
@@ -77,32 +77,32 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 		cenariostelas.setCEP("12233002");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
-		
-	
-	// ######## MIGRACAO TT ########
+
+
+		// ######## MIGRACAO TT ########
 		cenariostelas.clickPre_ControleFatura();
-					
-				
-	// ######## PLANOS ########
+
+
+		// ######## PLANOS ########
 		cenariostelas.clickPlanoTimControleSmart_4();
 		cenariostelas.clickSemFidelizacao();
 		cenariostelas.clickBotaoPlano();
-					
-					
-	// ######## SERVIÇOS ########
+
+
+		// ######## SERVIÇOS ########
 		cenariostelas.clickBotaoProsseguir();
-	
-							
-	// ######## INFORMAÇÃO DA FATURA ########
+
+
+		// ######## INFORMAÇÃO DA FATURA ########
 		cenariostelas.clickDataVencimento();
 		cenariostelas.clickBotaoInfFatura();
-		
-				
-	// ######## PÓS VENDA ########
-		cenariostelas.clickFinalizar();	
-		
 
-	// ######## RESUMO DA OPERAÇÃO ########
+
+		// ######## PÓS VENDA ########
+		cenariostelas.clickFinalizar();	
+
+
+		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedidoComDoc();
 	}

@@ -13,10 +13,11 @@ import br.ce.wcaquino.utils.DataBaseUtils;
 import br.ce.wcaquino.utils.DataUtils;
 import br.ce.wcaquino.utils.GeraCpfCnpj;
 
-public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_TelasPage{
+public class CY0004_Ativacao_ControleFatura_SemPortabilidade_Test extends Cenarios_TelasPage{
 	
 	private Cenarios_TelasPage cenariostelas = new Cenarios_TelasPage();
 	private static LoginPage page = new LoginPage();
+	private GeraCpfCnpj gerarCpfCnpj = new GeraCpfCnpj();
 	private DataUtils dataUtils = new DataUtils();
 	private DataBaseUtils database = new DataBaseUtils();
 	private String ResgataChip = "Select SM6.SM_SERIALNUM From STORAGE_MEDIUM SMIX, "
@@ -46,13 +47,12 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
             + "And HA.AREA_ID = A.AREA_ID "
             + "And HL.SWITCH_ID In ('1', '2', '3') "
             + "And A.AREA_DESC = 'SP_15' and rownum <5 ";
-		
+        
 	
 	// ######## LOGAR NO SISTEMA ########
 	@BeforeClass
 	public static void inicializa() throws InterruptedException{
-		//Abrindo Site/App
-		page.acessarTelaInicial();
+		page.acessarTelaInicial();//Abrindo Site/App
 		//Logando com Matricula e Senha
 		page.setEmail("T3313299");
 		page.setSenha("Tim@12345");
@@ -62,8 +62,8 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
-	public void test1_CY0011_Ativacao_DependenteTIMBlackFamilia() throws InterruptedException{
-		cenariostelas.sendPDV("MORUMBI"); 
+	public void test1_CY0004_AtivacaoControleFaturaSemPortabilidade() throws InterruptedException{
+		cenariostelas.sendPDV("LP LOJA MORUMBI SHOP"); 
 		cenariostelas.EscolhaPDVMorumbi();
 		cenariostelas.confirmaPDV();
 		cenariostelas.fechapopupPDV();
@@ -80,12 +80,12 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## NOVO ATENDIMENTO ########
-		//String cpf = gerarCpfCnpj.cpf(false);
-		//Connection conn = DataBaseUtils.newCrivoConnection();
-		//System.out.print("CPF:"+cpf);
-		//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-		//cenariostelas.setCPF(cpf);
-		cenariostelas.setCPF("77358734092");
+		String cpf = gerarCpfCnpj.cpf(false);
+		Connection conn = DataBaseUtils.newCrivoConnection();
+		//ResultSet insertCrivo = database.executeAndReturnFirstResult("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
+		System.out.print("CPF:"+cpf);
+		boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
+		cenariostelas.setCPF(cpf);
 		cenariostelas.setTelefone("15964738960");
 		cenariostelas.proximoNovoAtendimento();
 
@@ -98,23 +98,25 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## DADOS DO CLIENTE ########
-		//cenariostelas.setNome("teste");			
-		//cenariostelas.setEmailCliente("teste@teste.com");
-		//cenariostelas.confirmaEmail("teste@teste.com");
-		//cenariostelas.validaEmail();
-		//cenariostelas.setDataNasc("12102000");
-		//cenariostelas.setNomeMae("maeteste");			
-		//cenariostelas.setCEP("18320971");
+		cenariostelas.setNome("teste");			
+		cenariostelas.setEmailCliente("teste@teste.com");
+		cenariostelas.confirmaEmail("teste@teste.com");
+		cenariostelas.validaEmail();
+		//cenariostelas.checkNotEmail("teste@teste.com");
+		cenariostelas.setDataNasc("12102000");
+		cenariostelas.setNomeMae("maeteste");			
+		cenariostelas.setCEP("18320971");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
+		//cenariostelas.poupupClientes();
 
 
 		// ######## ENDEREÇO DO CLIENTE ########
-		//endcliPage.clickFecharPopup();
-		//cenariostelas.clickAntesLogradouro();
-		//cenariostelas.clickTipoLogradouro();
-		//cenariostelas.setNomeDaRua("Itagiba");
-		//cenariostelas.setNumero("520");
+		//cenariostelas.clickFecharPopup();
+		cenariostelas.clickAntesLogradouro();
+		cenariostelas.clickTipoLogradouro();
+		cenariostelas.setNomeDaRua("Itagiba");
+		cenariostelas.setNumero("520");
 		cenariostelas.proximoEnderecoClientes();
 
 
@@ -132,34 +134,40 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## ESCOLHA O SEGMENTO ########
-		cenariostelas.clickTimBlackMultiFatura();
-
-
-		// ######## ESCOLHER TITULAR OU DEPENDENTE ########
-		cenariostelas.escolhaDependente();
-		cenariostelas.numeroTitular("11964530050");
-		cenariostelas.clickBotaoTitDep();		
+		cenariostelas.clickControleFatura();
 
 
 		// ######## PLANOS ########
-		cenariostelas.clickPlanoDependente();
-		cenariostelas.clickPlanoSemFidel();
-		cenariostelas.clickBotaoBlackDep();
-		
-		
-		// ######## BUSCA E INSERE TELEFONE ########
-		Connection conn = DataBaseUtils.newSiebelUAT1Connection();
-        boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
-                + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
-                , conn);
-        DataBaseUtils.closeConnection(conn);
+		cenariostelas.clickPlano();
+		cenariostelas.clickOpacao5();
+		cenariostelas.clickPopup();
+		cenariostelas.clickBotaoPlano();
 
 
 		// ######## SERVIÇOS ########
 		cenariostelas.clickBotaoProsseguir();
 
 
-		// ######## INSERIR CHIP LOJA PRÓPRIA ########
+		// ######## FIDELIZAÇÃO DE APARELHO ########
+		cenariostelas.setIMEI("869939148707358");
+		cenariostelas.validarIMEI();
+		cenariostelas.clickBotaoFidelAparelho();			
+
+
+		// ######## INFORMAÇÃO DA FATURA ########
+		cenariostelas.clickDataVencimento();
+		cenariostelas.clickBotaoInfFatura();
+		
+		
+		// ######## BUSCA E INSERE TELEFONE ########
+        conn = DataBaseUtils.newSiebelUAT1Connection();
+        boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
+                + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
+                , conn);
+        DataBaseUtils.closeConnection(conn);
+
+
+     // ######## INSERIR CHIP LOJA PRÓPRIA ########
         conn = DataBaseUtils.newBSCSIXConnection();
         ResultSet respChip =  database.executeAndReturnFirstResult(ResgataChip
                 , conn);
@@ -176,20 +184,11 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
         // ######## CONT...INSERIR CHIP ########
         cenariostelas.setCHIP(chip);
         cenariostelas.proximoInserirCHIP();
-        
 
 
 		// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
 		cenariostelas.proximoEscolhaNum();
-
-
-		// ######## DADOS DA ALÇADA ########
-		//cenariostelas.anexarIdentFrente();
-		//cenariostelas.anexarIdentVerso();
-		//cenariostelas.anexarCPF();
-		//cenariostelas.anexarComprovanteRes();
-		//cenariostelas.clickBotaoAlcada();
 
 
 		// ######## RESUMO DA OPERAÇÃO ########

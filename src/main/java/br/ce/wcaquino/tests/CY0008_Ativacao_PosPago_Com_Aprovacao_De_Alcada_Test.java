@@ -13,10 +13,11 @@ import br.ce.wcaquino.utils.DataBaseUtils;
 import br.ce.wcaquino.utils.DataUtils;
 import br.ce.wcaquino.utils.GeraCpfCnpj;
 
-public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_TelasPage{
+public class CY0008_Ativacao_PosPago_Com_Aprovacao_De_Alcada_Test extends Cenarios_TelasPage{
 	
 	private Cenarios_TelasPage cenariostelas = new Cenarios_TelasPage();
 	private static LoginPage page = new LoginPage();
+	private GeraCpfCnpj gerarCpfCnpj = new GeraCpfCnpj();
 	private DataUtils dataUtils = new DataUtils();
 	private DataBaseUtils database = new DataBaseUtils();
 	private String ResgataChip = "Select SM6.SM_SERIALNUM From STORAGE_MEDIUM SMIX, "
@@ -46,7 +47,7 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
             + "And HA.AREA_ID = A.AREA_ID "
             + "And HL.SWITCH_ID In ('1', '2', '3') "
             + "And A.AREA_DESC = 'SP_15' and rownum <5 ";
-		
+	
 	
 	// ######## LOGAR NO SISTEMA ########
 	@BeforeClass
@@ -62,7 +63,7 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 	// ######## IDENTIFICAÇÃO DE PDV ########
 	@Test
-	public void test1_CY0011_Ativacao_DependenteTIMBlackFamilia() throws InterruptedException{
+	public void test1_CY0008_Ativacao_PosPago_Com_Aprovacao_De_Alcada() throws InterruptedException{
 		cenariostelas.sendPDV("MORUMBI"); 
 		cenariostelas.EscolhaPDVMorumbi();
 		cenariostelas.confirmaPDV();
@@ -80,13 +81,12 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## NOVO ATENDIMENTO ########
-		//String cpf = gerarCpfCnpj.cpf(false);
-		//Connection conn = DataBaseUtils.newCrivoConnection();
-		//System.out.print("CPF:"+cpf);
-		//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-		//cenariostelas.setCPF(cpf);
-		cenariostelas.setCPF("77358734092");
-		cenariostelas.setTelefone("15964738960");
+		String cpf = gerarCpfCnpj.cpf(false);
+        Connection conn = DataBaseUtils.newCrivoConnection();
+        System.out.print("CPF:"+cpf);
+        boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
+        cenariostelas.setCPF(cpf);
+		cenariostelas.setTelefone("12981110910");
 		cenariostelas.proximoNovoAtendimento();
 
 
@@ -98,23 +98,22 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## DADOS DO CLIENTE ########
-		//cenariostelas.setNome("teste");			
-		//cenariostelas.setEmailCliente("teste@teste.com");
-		//cenariostelas.confirmaEmail("teste@teste.com");
-		//cenariostelas.validaEmail();
-		//cenariostelas.setDataNasc("12102000");
-		//cenariostelas.setNomeMae("maeteste");			
-		//cenariostelas.setCEP("18320971");
+		cenariostelas.setNome("_test");			
+		cenariostelas.setEmailCliente("teste@teste.com");
+		cenariostelas.confirmaEmail("teste@teste.com");
+		cenariostelas.validaEmail();
+		cenariostelas.setDataNasc("12102000");
+		cenariostelas.setNomeMae("maeteste");			
+		cenariostelas.setCEP("18320971");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
 
 
 		// ######## ENDEREÇO DO CLIENTE ########
-		//endcliPage.clickFecharPopup();
-		//cenariostelas.clickAntesLogradouro();
-		//cenariostelas.clickTipoLogradouro();
-		//cenariostelas.setNomeDaRua("Itagiba");
-		//cenariostelas.setNumero("520");
+		cenariostelas.clickAntesLogradouro();
+		cenariostelas.clickTipoLogradouro();
+		cenariostelas.setNomeDaRua("Itagiba");
+		cenariostelas.setNumero("520");
 		cenariostelas.proximoEnderecoClientes();
 
 
@@ -132,31 +131,30 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## ESCOLHA O SEGMENTO ########
-		cenariostelas.clickTimBlackMultiFatura();
+		cenariostelas.clickPosPagoFatura();
 
-
-		// ######## ESCOLHER TITULAR OU DEPENDENTE ########
-		cenariostelas.escolhaDependente();
-		cenariostelas.numeroTitular("11964530050");
-		cenariostelas.clickBotaoTitDep();		
-
-
+		
 		// ######## PLANOS ########
-		cenariostelas.clickPlanoDependente();
-		cenariostelas.clickPlanoSemFidel();
-		cenariostelas.clickBotaoBlackDep();
+		cenariostelas.clickPlanoTimBlack_A3();
+		cenariostelas.clickSemFidel();
+		cenariostelas.clickBotaoBlack();
+
+
+		// ######## SERVIÇOS ########
+		cenariostelas.clickBotaoProsseguir();
 		
 		
 		// ######## BUSCA E INSERE TELEFONE ########
-		Connection conn = DataBaseUtils.newSiebelUAT1Connection();
+        conn = DataBaseUtils.newSiebelUAT1Connection();
         boolean resp =  database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
                 + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5"
                 , conn);
         DataBaseUtils.closeConnection(conn);
 
 
-		// ######## SERVIÇOS ########
-		cenariostelas.clickBotaoProsseguir();
+		// ######## INFORMAÇÃO DA FATURA ########
+		cenariostelas.clickDataVencimento();
+		cenariostelas.clickBotaoInfFatura();
 
 
 		// ######## INSERIR CHIP LOJA PRÓPRIA ########
@@ -176,25 +174,27 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
         // ######## CONT...INSERIR CHIP ########
         cenariostelas.setCHIP(chip);
         cenariostelas.proximoInserirCHIP();
-        
 
 
 		// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
 		cenariostelas.proximoEscolhaNum();
-
+		
 
 		// ######## DADOS DA ALÇADA ########
 		//cenariostelas.anexarIdentFrente();
 		//cenariostelas.anexarIdentVerso();
 		//cenariostelas.anexarCPF();
 		//cenariostelas.anexarComprovanteRes();
-		//cenariostelas.clickBotaoAlcada();
+		cenariostelas.clickBotaoAlcada();
 
 
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		// ########// ########// ########
+        cenariostelas.encerra();
 	}	
 }

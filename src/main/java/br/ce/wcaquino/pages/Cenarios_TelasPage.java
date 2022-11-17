@@ -2,23 +2,27 @@ package br.ce.wcaquino.pages;
 
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 
+import java.awt.Point;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import com.steadystate.css.parser.Locatable;
 
 import br.ce.wcaquino.core.BasePage;
 import br.ce.wcaquino.core.DriverFactory;
+import br.ce.wcaquino.utils.DataBaseUtils;
 
 public class Cenarios_TelasPage extends BasePage {
-	
-	
+		
 	
 	// ######## INICIALIZAÇÃO - ENDEREÇO E LOGIN ########
 
 	public void acessarTelaInicial() {
-		DriverFactory.getDriver().get("https://apptimvendasdev.internal.timbrasil.com.br/28_0_27_UAT1/#/login");
+		DriverFactory.getDriver().get("https://apptimvendasdev.internal.timbrasil.com.br/29_0_13_UAT1/#/login");
 	}
 
 	public void setEmail(String matricula) throws InterruptedException {
@@ -46,15 +50,17 @@ public class Cenarios_TelasPage extends BasePage {
 	
 
 	public void sendPDV(String pdv) throws InterruptedException {
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		escreverSemTroca("//ion-searchbar[@id='searchbar-pdv']/div/input", pdv);
 	}
 
 	public void EscolhaPDVDutra() throws InterruptedException {
+	    Thread.sleep(5000);
 		clicarXpath("//ion-label[contains(.,'E A DUTRA')]");
 	}
 
 	public void EscolhaPDVVarejo() throws InterruptedException {
+	    Thread.sleep(10000);
 		clicarXpath("//ion-label[contains(.,'VAREJO_LASA_L229')]");
 	}
 
@@ -63,6 +69,7 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void EscolhaPDVMorumbi() throws InterruptedException {
+	    Thread.sleep(2000);
 		clicarXpath("//ion-label[contains(.,'LP LOJA MORUMBI SHOP')]");
 	}
 
@@ -107,6 +114,11 @@ public class Cenarios_TelasPage extends BasePage {
 		Thread.sleep(10000);
 		escreverSemTroca("//input[@type='tel']", newtel);
 	}
+	
+	public void clickTimPre() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//p[contains(.,'TIM PRÉ')]");
+    }
 
 	public void clickTimPreTop() throws InterruptedException {
 		Thread.sleep(10000);
@@ -143,6 +155,11 @@ public class Cenarios_TelasPage extends BasePage {
 		Thread.sleep(15000);
 		clicarXpath("//p[contains(.,'TIM Controle Redes Sociais 4 0')]");
 	}
+	
+	public void clickBlackMulti_A_Hero_3_0() throws InterruptedException {
+        Thread.sleep(15000);
+        clicarXpath("//p[contains(.,'TIM Black Multi A Hero 3 0')]");
+    }
 
 	public void clickOpcaoDemorada() throws InterruptedException {
 		Thread.sleep(30000);
@@ -150,7 +167,7 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 	
 	public void clickOpcao() throws InterruptedException {
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		clicarXpath("//ion-radio/button/span");
 	}
 
@@ -185,13 +202,13 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void clickTrocaChip() throws InterruptedException {
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		clicarXpath("//span[contains(.,'Troca de Chip')]");
 	}
 
 	public void clickTrocaPlano() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Troca de Plano')]");
-		Thread.sleep(15000);
+		Thread.sleep(10000);
 	}
 
 	public void clickFinalizar() throws InterruptedException {
@@ -231,9 +248,8 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void clickPre_PosPago_Fatura() throws InterruptedException {
-		Thread.sleep(10000);
+		Thread.sleep(2000);
 		clicarXpath("//span[contains(.,'Pré para Pós-Pago Fatura')]");
-
 	}
 
 	public void clickPre_PosPago_Express() throws InterruptedException {
@@ -257,11 +273,11 @@ public class Cenarios_TelasPage extends BasePage {
 	// ######## DADOS COMPLEMENTAARES ########
 	
 
-	public void clickSexoFeminino() throws InterruptedException { // FEMININO
+	public void clickSexoFeminino() throws InterruptedException { 
 		clicarXpath("//ion-col[2]/ion-item/div/ion-radio/button/span");
 	}
 
-	public void clickSexoMasculino() throws InterruptedException { //MASCULINO
+	public void clickSexoMasculino() throws InterruptedException { 
 	clicarXpath("//ion-col[1]/ion-item/div/ion-radio/button/span");
 	}
 
@@ -341,7 +357,7 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void apagaCEP() throws InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 		clicarXpath("(//ion-item[5]/div/div/ion-input/input");
 	}
 	
@@ -349,11 +365,21 @@ public class Cenarios_TelasPage extends BasePage {
 		escreverSemTroca("(//input[@type='tel'])[2]", cep);
 	}
 	
+	//##### APAGA O CONTEÚDO - LIMPA A CÉLULA
 	public void setCEPTroca(String cep) throws InterruptedException {
+	    Thread.sleep(5000);
+	    //##### INDICA O CAMPO ONDE SERÁ APAGADO A INFORMAÇÃO
+		WebElement elemento = getDriver().findElement(By.xpath("(//input[@type='tel'])[2]"));
 		
-		//##### APAGA O CONTEÚDO - LIMPA A CÉLULA
-		WebElement elemento = getDriver().findElement(By.xpath("//ion-item[5]/div/div/ion-input/input"));
+		// Seleciona texto do começo do campo até o fim, segurando SHIFT e depois, aplica o Backspace
+		elemento.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), Keys.BACK_SPACE);
+		
+		// Seleciona todo o texto dando o comando "CONTROL + A" e depois, aplica o Backspace          
 		elemento.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+
+		// Apaga qualquer texto no componente           
+		elemento.clear();
+		
 		escreverSemTroca("(//input[@type='tel'])[2]", cep);
 	}
 
@@ -362,6 +388,7 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void proximoDadosClientes() throws InterruptedException {
+	    Thread.sleep(5000);
 		clicarXpath("//div[2]/button[2]");
 	}
 
@@ -395,13 +422,12 @@ public class Cenarios_TelasPage extends BasePage {
 
 	// ########################################################
 	
-	
 
 	// ######## ENDEREÇO DO CLIENTE ########
 	
 
 	public void clickAntesLogradouro() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		clicarXpath("//ion-item[5]/div/div/ion-select/button/span");
 	}
 
@@ -414,7 +440,7 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void setNumero(String numero) throws InterruptedException {
-		Thread.sleep(5000);
+	    Thread.sleep(10000);
 		escreverSemTroca("(//input[@type='tel'])[2]", numero);
 	}
 
@@ -424,23 +450,19 @@ public class Cenarios_TelasPage extends BasePage {
 
 	// ########################################################
 	
-	
 
 	// ######## ESCOLHA NUMERO ########
 	
 
 	public void clickNumero() throws InterruptedException {
-		Thread.sleep(10000);
 		clicarXpath("//ion-list/ion-item/div/ion-radio/button/span");
 	}
 
 	public void proximoEscolhaNum() throws InterruptedException {
 		clicarXpath("//div[2]/button[2]/span");
-		Thread.sleep(5000);
 	}
 
 	// ########################################################
-	
 	
 
 	// ######## ESCOLHA PRODUTO ########
@@ -451,7 +473,6 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	// ########################################################
-	
 	
 
 	// ######## ESCOLHA SEGMENTO ########
@@ -504,7 +525,7 @@ public class Cenarios_TelasPage extends BasePage {
 	
 
 	public void setIMEI(String imei) throws InterruptedException {
-		Thread.sleep(8000);
+		Thread.sleep(2000);
 		escreverSemTroca("//input[@type='text']", imei);
 	}
 
@@ -523,7 +544,6 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	// ########################################################
-	
 	
 
 	// ######## INFORMAÇÃO DA FATURA ########
@@ -566,7 +586,7 @@ public class Cenarios_TelasPage extends BasePage {
 	
 	
 
-	// ######## INSERIR CHIP ########
+	// ######## INSERIR E TROCA DE CHIP ########
 	
 
 	public void setCHIP(String chip) throws InterruptedException {
@@ -574,24 +594,13 @@ public class Cenarios_TelasPage extends BasePage {
 		escreverSemTroca("//ion-input[@id='chip-barcode']/input", chip);
 	}
 
-	public void proximoInserirCHIP() throws InterruptedException {
-		clicarXpath("//span[contains(.,'Próximo')]");
-	}
-
-	// ########################################################
-	
-	
-
-	// ######## TROCA DE CHIP ########
-	
-
 	public void setTrocaCHIP(String chip) throws InterruptedException {
-		Thread.sleep(12000);
+		Thread.sleep(15000);
 		escreverSemTroca("//ion-input[@id='chip-barcode']/input", chip);
 	}
 	
 	public void clickMotivoTrocaChip() throws InterruptedException {
-		clicarXpath("//ion-select/button/span"); //SEM GARANTIA
+		clicarXpath("//ion-select/button/span"); 
 	}
 
 	public void clickMotivoComGarantia_TrocaChip() throws InterruptedException {
@@ -599,17 +608,25 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	public void clickMotivoSemGarantia_TrocaChip() throws InterruptedException {
-		Thread.sleep(3000);
 		clicarXpath("//div/div/button[3]/span"); //SEM GARANTIA
 	}
 
-	public void proximoTrocaCHIP() throws InterruptedException {
+	public void proximoInserirCHIP() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Próximo')]");
+		Thread.sleep(15000);
 	}
+	
+// ########################################################
+    
+    
 
+    // ######## BUSCA E INSERE TELEFONE ########
+	
+	
+	
+	
 	// ########################################################
-	
-	
+		
 
 	// ######## NOVO ATENDIMENTO ########
 	
@@ -631,9 +648,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ########################################################
 	
 	
-
-	                 // ######## PLANOS ########
-	
+	// ######## PLANOS ########	
 
 	// ######## PLANO TIM CONTROLE GIGA ########
 
@@ -679,10 +694,8 @@ public class Cenarios_TelasPage extends BasePage {
 
 	// ############################################################
 	
-	
 
 	// ######## PLANO TIM BLACK DEPENDENTE ########
-	
 
 	// ########PLANO DEPENDENTE ########
 	public void clickPlanoDependente() throws InterruptedException {
@@ -693,11 +706,6 @@ public class Cenarios_TelasPage extends BasePage {
 	// ######## PLANO SEM FIDELIZACAO ########
 	public void clickPlanoSemFidel() throws InterruptedException {
 		clicarXpath("//ion-radio/button/span");
-	}
-
-	// ######## PLANO APARELHO NÃO FIDELIZADO ########
-	public void clickPlanoAparelhoSemFidel() throws InterruptedException {
-		clicarXpath("//");
 	}
 
 	public void clickBotaoBlackDep() throws InterruptedException {
@@ -753,6 +761,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ########PLANO DEPENDENTE ########
 	
 	public void clickPlanoBlack_A_Express_2() throws InterruptedException {
+	    Thread.sleep(5000);
 		clicarXpath(
 				"//p[contains(.,'17GB, Ligações e SMS ilimitados, Aya Books, Bancah Premium Jornais, TIM Segurança Digital Light, TIM Music by Deezer e Apps de Redes Sociais.')]");
 	}
@@ -774,17 +783,17 @@ public class Cenarios_TelasPage extends BasePage {
 	// ############################################################
 	
 
-				// ######## PLANO TIM BLACK A 3 ########	
+	// ######## PLANO TIM BLACK A 3 ########	
 	
 	public void clickPlanoTimBlackA3() throws InterruptedException {
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		clicarXpath(
 				"//p[contains(.,'15GB, Ligações e SMS ilimitados, Audiobook By Ubook Premium, Bancah Premium + Jornais, TIM Segurança Digital Premium, TIM Music by Deezer, Reforça e Apps de Redes Sociais.')]");
 	}
 
 			// ######## SEM FIDELIZAÇÃO ########
 			public void clickSemFidel() throws InterruptedException {
-					clicarXpath("//");
+					clicarXpath("//ion-radio/button/span");
 			}
 
 			// ######## FIDELIZAÇÃO DO APARELHO ########
@@ -794,31 +803,15 @@ public class Cenarios_TelasPage extends BasePage {
 
 			// ######## FIDELIZAÇÃO DO PLANO + APARELHO ########
 			public void clickFidelPlano_Apar() throws InterruptedException {
-				clicarXpath("//ion-item[3]/ion-radio/button/span");
+				clicarXpath("//ion-item[7]/ion-radio/button/span");
 			}
-
-	// ######## PlanoTimBlackB3 ########
-	public void clickPlanoTimBlackB3() throws InterruptedException {
-		clicarXpath("//");
-	}
-
-	// ######## PlanoTimBlackCUltra ########
-	public void clickPlanoTimBlackCUltra() throws InterruptedException {
-		clicarXpath("//");
-	}
-
-	// ######## PlanoTimBlackCUHero3 ########
-	public void clickPlanoTimBlackCUHero3() throws InterruptedException {
-		clicarXpath("//");
-	}
 
 	public void clickBotaoBlack() throws InterruptedException {
 		clicarXpath("//button[contains(.,'Próximo')]");
 	}
 
 	// ############################################################
-	
-	
+		
 
 	// ######## PLANO TIM CONTROLE REDES SOCIAIS 4 0 ########
 	
@@ -830,7 +823,7 @@ public class Cenarios_TelasPage extends BasePage {
 
 				// PLANO SEM FIDELIZAÇÃO
 				public void clickOpacao1() throws InterruptedException {
-					clicarXpath("//ion-radio/button/span"); //
+					clicarXpath("//ion-radio/button/span");
 				}
 
 				// PLANO FIDELIZAÇÃO DO PLANO
@@ -861,7 +854,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ############################################################
 				
 				
-			// ######## PLANO TIM BLACK MULTI FATURA ########
+	// ######## PLANO TIM BLACK MULTI FATURA ########
 
 	public void escolhaTimBMF() throws InterruptedException {
 		clicarXpath("//ion-card[8]/ion-card-header");
@@ -884,9 +877,8 @@ public class Cenarios_TelasPage extends BasePage {
 	// ############################################################
 	
 	
-			// ######## PLANO TIM BLACK MULTI 3 0 ########
-				
-				
+	// ######## PLANO TIM BLACK MULTI 3 0 ########
+							
 	public void clickMultiA3_0() throws InterruptedException {
 		clicarXpath("//p[contains(.,'30GB, Ligações e SMS ilimitados, Audiobooks by Ubook Platinum, Babbel 3, Loja Gameloft, Bancah Premium + Jornais, TIM Gestão Digital, Deezer, TIM Nuvem 500GB, TIM Segurança Digital, Reforça, Band News, Band Sports e Apps de Redes Sociais.')]");
 	}
@@ -920,6 +912,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ######## POPUP E BOTÃO PROXIMO ########
 
 	public void clickPopup() throws InterruptedException {
+	    Thread.sleep(10000);
 		clicarXpath("//button[contains(.,'OK')]");
 	}
 	
@@ -935,12 +928,13 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void clickBotaoPlano() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Próximo')]");
+		Thread.sleep(10000);
 	}
 
 	// ########################################################
 		
 	
-	// ######## RESUMO OPERAÇÃO ########
+	// ######## RESUMO DA OPERAÇÃO ########
 
 	public void checkCiente() throws InterruptedException {
 		Thread.sleep(10000);
@@ -957,7 +951,6 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 
 	// ########################################################
-	
 	
 
 	// ######## SERVIÇO ########
@@ -982,9 +975,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ########################################################
 	
 	
-			// ######## UPLOAD DE ARQUIVOS ########
-	
-	// ######## DADOS DA ALÇADA ########
+	// ######## DADOS DA ALÇADA - UPLOAD DE ARQUIVOS ########
 		
 	public void anexarIdentFrente() throws InterruptedException {
 		Thread.sleep(8000);
@@ -1054,6 +1045,7 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void clickConfPagamento() throws InterruptedException {
 		clicarBotaoIframe("//buton[contains(.,'Confirmar pagamento')]");
+		Thread.sleep(25000);
 	}
 
 	// ########################################################
@@ -1078,17 +1070,34 @@ public class Cenarios_TelasPage extends BasePage {
 		Thread.sleep(10000);
 	}
 
-<<<<<<< HEAD
-	
-=======
-
 	public void clickMotivo1() throws InterruptedException {
 		Thread.sleep(10000);
 		clicarXpath("//ion-label[contains(.,'Motivo 1')]");
 	}
->>>>>>> 9cf673962315c9a455f6317670c3c70de8b8b22a
+
+
+	// ########################################################
+
+
+	// ######## BARRA DE ROLAGEM - ROLAR PARA BAIXO ########
+	//NÃO ESTÁ FUNCIONANDO
+	public void rolarAteObject() throws InterruptedException {
+	WebElement clickable = getDriver().findElement(By.xpath("//ion-radio/button/span"));
+    new Actions(getDriver())
+            .click(clickable)
+            .perform();
+  //NÃO ESTÁ FUNCIONANDO
+    WebElement hoverable = getDriver().findElement(By.xpath("//ion-radio/button/span"));
+    new Actions(getDriver())
+            .moveToElement(hoverable)
+            .perform();
+	}
+	
+	// ########################################################
 }
-// ########################################################
+
+
+
 
 
 
