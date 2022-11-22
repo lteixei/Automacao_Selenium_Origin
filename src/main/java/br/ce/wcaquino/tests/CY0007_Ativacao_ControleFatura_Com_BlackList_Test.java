@@ -124,7 +124,15 @@ public class CY0007_Ativacao_ControleFatura_Com_BlackList_Test extends Cenarios_
 
 			// ######## ENDEREÇO DO CLIENTE ########
 			cenariostelas.setNumero("520");
-			cenariostelas.proximoEnderecoClientes();
+			// ################################
+	        cenariostelas.clickVerificarTIMLIVE();
+	        cenariostelas.clickPopup();
+	        cenariostelas.clickTipoDeComplemento();
+	        cenariostelas.escolhaTipoDeComplemento();
+	        cenariostelas.clickComplemento();
+	        cenariostelas.setComplemento("401");
+	        // ################################
+	        cenariostelas.proximoEnderecoClientes();
 
 
 			// ######## DADOS COMPLEMENTARES ########
@@ -202,6 +210,10 @@ public class CY0007_Ativacao_ControleFatura_Com_BlackList_Test extends Cenarios_
 			cenariostelas.checkCiente();
 			//cenariostelas.clickCriarPedido();
 			cenariostelas.clickCriarPedidoComDoc();
+			
+			
+			// ######## ENCERRA E FECHA JANELA ########
+	        //cenariostelas.encerra();
 
 		}
 }

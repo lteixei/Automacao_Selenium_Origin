@@ -131,6 +131,10 @@ public class CY0024_TrocaDePlano_Controle_Para_FamiliaMaster_Com_TrocaDeChip_Tes
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedidoComDoc();
 		cenariostelas.clickPopupFim();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	}
 }

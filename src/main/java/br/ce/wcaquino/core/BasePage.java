@@ -70,8 +70,11 @@ public class BasePage {
 		Thread.sleep(2000);
 		getDriver().findElement(By.xpath(element)).click();
 	}	
-		
-		
+	
+	public void clicarCSS(String css) throws InterruptedException {
+        Thread.sleep(2000);
+        getDriver().findElement(By.cssSelector(css)).click();
+	}
 		
 	/********* UPLOAD DE ARQUIV0 ************/
 	

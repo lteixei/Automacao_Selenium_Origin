@@ -64,5 +64,9 @@ public class CY0019_Migracao_De_Pre_Pago_Para_Plano_Família_Titular_Test {
         //cenariostelas.clickBotaoFinalizarAtendimento();
         
         
+     // ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
+        
+        
         }
 }

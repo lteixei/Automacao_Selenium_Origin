@@ -95,7 +95,15 @@ public class CY0006_Ativacao_ControleFatura_Test extends Cenarios_TelasPage{
 		//cenariostelas.clickTipoLogradouro();
 		//cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
+		// ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 
 		// ######## DADOS COMPLEMENTARES ########
@@ -210,5 +218,9 @@ public class CY0006_Ativacao_ControleFatura_Test extends Cenarios_TelasPage{
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}	
 }

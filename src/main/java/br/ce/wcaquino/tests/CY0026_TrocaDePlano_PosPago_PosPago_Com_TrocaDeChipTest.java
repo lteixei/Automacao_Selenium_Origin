@@ -127,6 +127,10 @@ public class CY0026_TrocaDePlano_PosPago_PosPago_Com_TrocaDeChipTest extends Cen
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedidoComDoc();
 		cenariostelas.clickPopupFim();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	}
 }

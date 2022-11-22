@@ -50,17 +50,17 @@ public class CY0002_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.fechapopupPDV();
 
 
-		// ######## ESCOLHA O PRODUTO ########
+	// ######## ESCOLHA O PRODUTO ########
 		cenariostelas.escolherProduto();
 
 
-		// ######## AMBIENTE DE ATENDIMENTO ########
+	// ######## AMBIENTE DE ATENDIMENTO ########
 		cenariostelas.clickAntesAtendimento();
 		cenariostelas.clickAtendimento();
 		cenariostelas.proximoAmbienteAtend();
 
 
-		// ######## NOVO ATENDIMENTO ########
+	// ######## NOVO ATENDIMENTO ########
 		String cpf = gerarCpfCnpj.cpf(false);
 		Connection conn = DataBaseUtils.newCrivoConnection();
 		System.out.print("CPF:"+cpf);
@@ -70,14 +70,14 @@ public class CY0002_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.proximoNovoAtendimento();
 
 
-		// ######## ATENDIMENTO ########
+	// ######## ATENDIMENTO ########
 		cenariostelas.clickOpcao();
 		cenariostelas.clickCampoDDD();
 		cenariostelas.clickDDD();
 		cenariostelas.proximoAtendimento();
 
 
-		// ######## DADOS DO CLIENTE ########
+	// ######## DADOS DO CLIENTE ########
 		cenariostelas.setNome("teste");			
 		cenariostelas.setEmailCliente("teste@teste.com");
 		cenariostelas.confirmaEmail("teste@teste.com");
@@ -89,15 +89,23 @@ public class CY0002_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.proximoDadosClientes();
 
 
-		// ######## ENDEREÇO DO CLIENTE ########
+	// ######## ENDEREÇO DO CLIENTE ########
 		cenariostelas.clickAntesLogradouro();
 		cenariostelas.clickTipoLogradouro();
 		cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
+		 // ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 
-		// ######## DADOS COMPLEMENTARES ########
+	// ######## DADOS COMPLEMENTARES ########
 		cenariostelas.clickSexoFeminino();			
 		cenariostelas.ckickAntesEscolherDoc();
 		cenariostelas.ckicEscolherDocID();
@@ -110,17 +118,17 @@ public class CY0002_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.proximoDadosComplementares();
 
 
-		// ######## ESCOLHA O SEGMENTO ########
+	// ######## ESCOLHA O SEGMENTO ########
 		cenariostelas.clickPrepago();			
 
 
-		// ######## ESCOLHA A OFERTA ########
+	// ######## ESCOLHA A OFERTA ########
 		cenariostelas.clickOferta1();  
 		cenariostelas.fechaPopup();
 		cenariostelas.proximoOferta();
 
 
-		// ######## INSERIR CHIP ########
+	// ######## INSERIR CHIP ########
 		String simcard ="";
 		String res="";
 		String JobName = "Obter_massa";
@@ -189,17 +197,17 @@ public class CY0002_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.proximoInserirCHIP();
 
 
-		// ######## ESCOLHA DE NUMERO ########
+	// ######## ESCOLHA DE NUMERO ########
 		cenariostelas.clickNumero();			
 		cenariostelas.proximoEscolhaNum();
 
 
-		// ######## RESUMO DA OPERAÇÃO ########
+	// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedido();
 		
 		
-		// ######## ENCERRA E FECHA JANELA ########
+	// ######## ENCERRA E FECHA JANELA ########
         cenariostelas.encerra();
 	}	
 }

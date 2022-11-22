@@ -175,6 +175,10 @@ public class CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test extends C
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	}
 }

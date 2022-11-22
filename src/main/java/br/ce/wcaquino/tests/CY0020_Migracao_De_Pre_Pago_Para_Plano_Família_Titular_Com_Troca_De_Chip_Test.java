@@ -62,5 +62,8 @@ public class CY0020_Migracao_De_Pre_Pago_Para_Plano_Família_Titular_Com_Troca_D
         cenariostelas.clickDataVencimento();
         cenariostelas.clickBotaoInfFatura();
         
+     // ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
+        
         }
     }

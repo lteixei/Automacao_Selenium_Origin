@@ -80,11 +80,6 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## NOVO ATENDIMENTO ########
-		//String cpf = gerarCpfCnpj.cpf(false);
-		//Connection conn = DataBaseUtils.newCrivoConnection();
-		//System.out.print("CPF:"+cpf);
-		//boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf+ "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-		//cenariostelas.setCPF(cpf);
 		cenariostelas.setCPF("77358734092");
 		cenariostelas.setTelefone("15964738960");
 		cenariostelas.proximoNovoAtendimento();
@@ -98,24 +93,19 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 
 
 		// ######## DADOS DO CLIENTE ########
-		//cenariostelas.setNome("teste");			
-		//cenariostelas.setEmailCliente("teste@teste.com");
-		//cenariostelas.confirmaEmail("teste@teste.com");
-		//cenariostelas.validaEmail();
-		//cenariostelas.setDataNasc("12102000");
-		//cenariostelas.setNomeMae("maeteste");			
-		//cenariostelas.setCEP("18320971");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
 
 
 		// ######## ENDEREÇO DO CLIENTE ########
-		//endcliPage.clickFecharPopup();
-		//cenariostelas.clickAntesLogradouro();
-		//cenariostelas.clickTipoLogradouro();
-		//cenariostelas.setNomeDaRua("Itagiba");
-		//cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 
 		// ######## DADOS COMPLEMENTARES ########
@@ -196,5 +186,9 @@ public class CY0011_Ativacao_DependenteTIMBlackFamilia_Test extends Cenarios_Tel
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}	
 }

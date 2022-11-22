@@ -130,6 +130,10 @@ public class CY0029_TrocaDeChip_Com_Chave_de_2a_Biometria_Ligada extends Cenario
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedido();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	}
 }

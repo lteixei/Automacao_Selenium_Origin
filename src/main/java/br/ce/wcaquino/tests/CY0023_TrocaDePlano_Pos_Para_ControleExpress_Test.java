@@ -92,5 +92,9 @@ public class CY0023_TrocaDePlano_Pos_Para_ControleExpress_Test extends Cenarios_
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedido();
 		cenariostelas.clickPopup();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}
 }

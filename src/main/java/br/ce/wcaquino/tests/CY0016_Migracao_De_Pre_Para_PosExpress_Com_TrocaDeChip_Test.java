@@ -94,40 +94,40 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 
 		// ######## ATENDIMENTO ########
 		cenariostelas.clickTimPreTop();
-		//cenariostelas.clickCampoDDD();
-		//cenariostelas.clickDDD();
 		cenariostelas.proximoAtendimento();
 
 
 		// ######## NO PÓS VENDA ########
 		cenariostelas.clickMigracao();
-		//cenariostelas.clickTrocaChip();
-		//cenariostelas.clickNovoProtocolo();
-		//cenariostelas.clickConsultarProtocolos();	
-
+		
 
 		// ######## DADOS DO CLIENTE ########
-		//cenariostelas.setNome("teste");			
-		//cenariostelas.setEmailCliente("teste@teste.com");
-		//cenariostelas.confirmaEmail("teste@teste.com");
-		//cenariostelas.validaEmail();
-		//cenariostelas.checkNotEmail("teste@teste.com");
-		//cenariostelas.setDataNasc("12102000");
-		//cenariostelas.setNomeMae("maeteste");			
-		//cenariostelas.setCEPTroca("03178030");
 		cenariostelas.buscarCEP();
 		cenariostelas.proximoDadosClientes();
-		//cenariostelas.poupupClientes();
+		
+		
+		// ######## ENDEREÇO DO CLIENTE ########
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
+        cenariostelas.clickPopup();
+        
+
+     // ######## DADOS COMPLEMENTARES ########
+        cenariostelas.proximoDadosComplementares();
 
 
 		// ######## MIGRACAO ########
-		//cenariostelas.poupupClientes();
 		cenariostelas.clickPre_PosPago_Express();
 
 
 		// ######## PLANOS ########
 		cenariostelas.clickPlanoBlack_A_Express_2();
-		//cenariostelas.clickFidelApar();
 		cenariostelas.clickBotaoBlackExpress();
 
 
@@ -150,10 +150,7 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 
 
 		// ######## NO PÓS VENDA ########
-		//cenariostelas.clickMigracao();
 		cenariostelas.clickTrocaChip();
-		//cenariostelas.clickNovoProtocolo();
-		//cenariostelas.clickConsultarProtocolos();	
 
 
 		// ######## INSERIR CHIP LOJA PRÓPRIA ########
@@ -188,5 +185,9 @@ public class CY0016_Migracao_De_Pre_Para_PosExpress_Com_TrocaDeChip_Test extends
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}
 }

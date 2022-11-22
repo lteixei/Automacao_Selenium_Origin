@@ -161,6 +161,10 @@ public class CY0018_Migracao_De_Pre_Para_Pos_ComTT_TrocaDeChip_Test extends Cena
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	    }
 	}

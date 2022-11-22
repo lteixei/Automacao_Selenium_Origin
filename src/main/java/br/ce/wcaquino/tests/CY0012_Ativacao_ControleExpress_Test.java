@@ -92,7 +92,15 @@ public class CY0012_Ativacao_ControleExpress_Test extends Cenarios_TelasPage{
 
 		// ######## ENDEREÇO DO CLIENTE ########
 		cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
+		// ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 
 		// ######## DADOS COMPLEMENTARES ########
@@ -208,5 +216,9 @@ public class CY0012_Ativacao_ControleExpress_Test extends Cenarios_TelasPage{
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedido();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}
 }

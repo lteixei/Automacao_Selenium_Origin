@@ -117,8 +117,15 @@ public class CY0004_Ativacao_ControleFatura_SemPortabilidade_Test extends Cenari
 		cenariostelas.clickTipoLogradouro();
 		cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
-
+		// ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 		// ######## DADOS COMPLEMENTARES ########
 		cenariostelas.clickSexoFeminino();			
@@ -195,5 +202,9 @@ public class CY0004_Ativacao_ControleFatura_SemPortabilidade_Test extends Cenari
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}	
 }

@@ -14,7 +14,7 @@ import br.ce.wcaquino.utils.DataUtils;
 import br.ce.wcaquino.utils.GeraCpfCnpj;
 
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CY0001_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage {
+public class CY0022_Troca_De_Chip_HLR_Controle extends Cenarios_TelasPage {
 
     private Cenarios_TelasPage cenariostelas = new Cenarios_TelasPage();
     private static LoginPage page = new LoginPage();
@@ -62,92 +62,40 @@ public class CY0001_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage {
     @Test
     public void test1_CY0001_AtivacaoDeAcessoPrePago() throws InterruptedException {
 
-     // ######## IDENTIFICAÇÃO DO PDV ########
+        // ######## IDENTIFICAÇÃO DO PDV ########
         cenariostelas.sendPDV("LP LOJA MORUMBI SHOP");
         cenariostelas.EscolhaPDVMorumbi();
         cenariostelas.confirmaPDV();
         cenariostelas.fechapopupPDV();
         
 
-     // ######## ESCOLHA O PRODUTO ########
+        // ######## ESCOLHA O PRODUTO ########
         cenariostelas.escolherProduto();
         
 
-     // ######## AMBIENTE DE ATENDIMENTO ########
+        // ######## AMBIENTE DE ATENDIMENTO ########
         cenariostelas.clickAntesAtendimento();
         cenariostelas.clickAtendimento();
         cenariostelas.proximoAmbienteAtend();
         
 
-     // ######## NOVO ATENDIMENTO ########
-        String cpf = gerarCpfCnpj.cpf(false);
-        Connection conn = DataBaseUtils.newCrivoConnection();
-        System.out.print("CPF:" + cpf);
-        boolean insertCrivo = database.executeInsert("insert into mensagens values (S_MENSAGENS.NEXTVAL,'" + cpf
-                + "','F','963',sysdate,'Score Interno','500',sysdate)", conn);
-        DataBaseUtils.closeConnection(conn);
-        cenariostelas.setCPF(cpf);
-        cenariostelas.setTelefone("15964738960");
+        // ######## NOVO ATENDIMENTO ########
+        cenariostelas.setCPF("94346725465");
+        cenariostelas.setTelefone("11996787820");//11954336341
         cenariostelas.proximoNovoAtendimento();
         
 
-     // ######## ATENDIMENTO ########
-        cenariostelas.clickOpcao();
-        cenariostelas.clickCampoDDD();
-        cenariostelas.clickDDD();
+        // ######## ATENDIMENTO ########
+        cenariostelas.clickPlanoTimBlackA3();
         cenariostelas.proximoAtendimento();
         
 
-     // ######## DADOS DO CLIENTE ########
-        cenariostelas.setNome("teste");
-        cenariostelas.setEmailCliente("teste@teste.com");
-        cenariostelas.confirmaEmail("teste@teste.com");
-        cenariostelas.validaEmail();
-        cenariostelas.setDataNasc("12102000");
-        cenariostelas.setNomeMae("maeteste");
-        cenariostelas.setCEP("02910130");//03178030
-        cenariostelas.buscarCEP();
-        cenariostelas.proximoDadosClientes();
+        // ######## NO PÓS VENDA ########
+        cenariostelas.clickTrocaPlano();
         
 
-     // ######## ENDEREÇO DO CLIENTE ########
-        cenariostelas.setNumero("520");
-        // ################################
-        cenariostelas.clickVerificarTIMLIVE();
-        cenariostelas.clickPopup();
-        cenariostelas.clickTipoDeComplemento();
-        cenariostelas.escolhaTipoDeComplemento();
-        cenariostelas.clickComplemento();
-        cenariostelas.setComplemento("401");
-        // ################################
-        cenariostelas.proximoEnderecoClientes();
-        
-
-     // ######## DADOS COMPLEMENTARES ########
-        cenariostelas.clickSexoFeminino();
-        cenariostelas.ckickAntesEscolherDoc();
-        cenariostelas.ckicEscolherDocID();
-        cenariostelas.setNumeroIdentidade("12345679");
-        cenariostelas.setDataEmissão("12/10/2000");
-        cenariostelas.setOrgaoEmissor("SSD");
-        cenariostelas.clickAntesUF();
-        cenariostelas.clickUF();
-        cenariostelas.setTelContato("15964738960");
-        cenariostelas.proximoDadosComplementares();
-        
-
-     // ######## ESCOLHA O SEGMENTO ########
-        cenariostelas.clickPrepago();
-        
-
-     // ######## ESCOLHA AS OFERTAS ########
-        cenariostelas.clickOferta1();
-        cenariostelas.fechaPopup();
-        cenariostelas.proximoOferta();
-        
-
-     // ######## BUSCA E INSERE TELEFONE ########
-        conn = DataBaseUtils.newSiebelUAT1Connection();
+        // ######## BUSCA E INSERE TELEFONE ########
+        Connection conn = DataBaseUtils.newSiebelUAT1Connection();
         boolean resp = database.executeInsert("UPDATE CX_NUM_INVENT SET X_VOIP_FLG = null, CNL_CODE = null,"
                 + " TAKEN_NUM = 'Available', ORDER_ID = null WHERE 1=1 and DDD = '15' and taken_num = 'Unavailable' and ROWNUM < 5",
                 conn);
@@ -166,22 +114,22 @@ public class CY0001_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage {
         }
         DataBaseUtils.closeConnection(conn);
         
-     // ######## CONT...INSERIR CHIP ########
+
+        // ######## CONT...INSERIR CHIP ########
         cenariostelas.setCHIP(chip);
+        cenariostelas.clickMotivoPerda_TrocaChip();
         cenariostelas.proximoInserirCHIP();
         
 
-     // ######## ESCOLHA DE NUMERO ########
-        cenariostelas.clickNumero();
-        cenariostelas.proximoEscolhaNum();
-        
+        // ######## NO PÓS VENDA ########
+        cenariostelas.clickFinalizar();
 
-     // ######## RESUMO DA OPERAÇÃO ########
-        cenariostelas.checkCiente();
-        cenariostelas.clickCriarPedido();
         
-
+        // ######## RESUMO DA OPERAÇÃO ########
+        cenariostelas.clickCriarPedido();  
+        
+        
      // ######## ENCERRA E FECHA JANELA ########
-        cenariostelas.encerra();
+        //cenariostelas.encerra();
     }
 }

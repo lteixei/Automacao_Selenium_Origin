@@ -96,6 +96,10 @@ public class CY0021_Migracao_De_PrePago_Para_PlanoFamília_Dependente_Test exten
 
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
-		cenariostelas.clickCriarPedidoComDoc();				
+		cenariostelas.clickCriarPedidoComDoc();		
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}
 }

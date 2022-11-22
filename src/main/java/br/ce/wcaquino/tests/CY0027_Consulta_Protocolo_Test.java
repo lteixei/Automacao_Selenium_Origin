@@ -11,18 +11,21 @@
         private Cenarios_TelasPage cenariostelas = new Cenarios_TelasPage();
         private static LoginPage page = new LoginPage();
         
+        // ######## LOGAR NO SISTEMA ########
         @BeforeClass
-        public static void inicializa() throws InterruptedException{
-            //Abrindo Site/App
+        public static void inicializa() throws InterruptedException {
+            // Abrindo o App TIM Vendas
             page.acessarTelaInicial();
-            //Logando com Matricula e Senha
+            // Logando com Matricula e Senha
             page.setEmail("T3313299");
             page.setSenha("Tim@12345");
             page.entrar();
         }
         
         @Test
-        public void test1_identificarPDV() throws InterruptedException{
+        public void test27_identificarPDV() throws InterruptedException{
+            
+            // ######## IDENTIFICAÇÃO DO PDV ########
             cenariostelas.sendPDV("MagazineLuiza");
             cenariostelas.EscolhaPDVMagazineluiza();
             cenariostelas.confirmaPDV();
@@ -44,6 +47,9 @@
             // ####### ATENDIMENTO ###########
             cenariostelas.clickConsultarProtocolos();
             cenariostelas.proximoOferta();
+            
+            // ######## ENCERRA E FECHA JANELA ########
+            cenariostelas.encerra();
         
 }
     }

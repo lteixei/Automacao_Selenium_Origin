@@ -8,27 +8,18 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import br.ce.wcaquino.core.DriverFactory;
 import br.ce.wcaquino.pages.LoginPage;
+import br.ce.wcaquino.tests.CY0001_Ativacao_De_Acesso_PrePago_Test;
+import br.ce.wcaquino.tests.CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test;
+import br.ce.wcaquino.tests.CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	//PDVTest.class
+	CY0001_Ativacao_De_Acesso_PrePago_Test.class,
+	//CY0014_Migracao_De_Pre_Para_Controle_Com_TrocaDeChip_Test.class,
+	//CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test.class
 })
 public class SuiteGeral {
 	private static LoginPage page = new LoginPage();
 	
-	@BeforeClass
-	public static void inicializa() throws InterruptedException{
-		//Abrindo Site/App
-		page.acessarTelaInicial();
-		
-		//Logando com Matricula e Senha
-		page.setEmail("T3313299");
-		page.setSenha("Tim@12345");
-		page.entrar();
-	}
 	
-	@AfterClass
-	public static void finaliza(){
-		DriverFactory.killDriver();
-	}
 }

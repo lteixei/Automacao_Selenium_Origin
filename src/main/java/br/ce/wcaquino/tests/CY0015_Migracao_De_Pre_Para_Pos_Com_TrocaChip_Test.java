@@ -172,6 +172,10 @@ public class CY0015_Migracao_De_Pre_Para_Pos_Com_TrocaChip_Test extends Cenarios
 		cenariostelas.checkCiente();
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	}
 }

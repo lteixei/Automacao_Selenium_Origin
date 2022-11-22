@@ -22,7 +22,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ######## INICIALIZAÇÃO - ENDEREÇO E LOGIN ########
 
 	public void acessarTelaInicial() {
-		DriverFactory.getDriver().get("https://apptimvendasdev.internal.timbrasil.com.br/29_0_13_UAT1/#/login");
+		DriverFactory.getDriver().get("https://apptimvendasdev.internal.timbrasil.com.br/30_0_27_UAT1/#/login");
 	}
 
 	public void setEmail(String matricula) throws InterruptedException {
@@ -103,7 +103,7 @@ public class Cenarios_TelasPage extends BasePage {
 	public void proximoAmbienteAtend() throws InterruptedException {
 		clicarXpath("//div[2]/button/span");
 	}
-
+	
 	// ########################################################
 	
 
@@ -121,7 +121,7 @@ public class Cenarios_TelasPage extends BasePage {
     }
 
 	public void clickTimPreTop() throws InterruptedException {
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		clicarXpath("//p[contains(.,'TIM PRÉ TOP')]");
 	}
 	
@@ -274,11 +274,12 @@ public class Cenarios_TelasPage extends BasePage {
 	
 
 	public void clickSexoFeminino() throws InterruptedException { 
-		clicarXpath("//ion-col[2]/ion-item/div/ion-radio/button/span");
+	    Thread.sleep(2000);
+	    clicarXpath("//ion-col[2]/ion-item/div/ion-radio/button/span");
 	}
 
 	public void clickSexoMasculino() throws InterruptedException { 
-	clicarXpath("//ion-col[1]/ion-item/div/ion-radio/button/span");
+	    clicarXpath("//ion-col[1]/ion-item/div/ion-radio/button/span");
 	}
 
 	public void ckickAntesEscolherDoc() throws InterruptedException {
@@ -447,6 +448,31 @@ public class Cenarios_TelasPage extends BasePage {
 	public void proximoEnderecoClientes() throws InterruptedException {
 		clicarXpath("//div[2]/button[2]/span");
 	}
+	
+	//#############//#############//#############//#############//
+	//######### NOVA ATUALIZAÇÃO - OPÇÃO NOVA
+	
+	public void clickVerificarTIMLIVE() throws InterruptedException {
+	    Thread.sleep(5000);
+	    clicarCSS(".button-clear > .button-inner");
+    }
+
+    public void clickTipoDeComplemento() throws InterruptedException {
+        clicarXpath("//ion-card-content/ion-item/div/div/ion-select/button/span");
+    }
+	
+    public void escolhaTipoDeComplemento() throws InterruptedException {
+        clicarXpath("//span[contains(.,'Apartamento')]");
+    }
+    
+    public void clickComplemento() throws InterruptedException {
+        clicarXpath("//ion-item[2]/div/div/ion-input/input");
+    }
+    
+    public void setComplemento(String complemento) throws InterruptedException {
+        escreverSemTroca("//ion-item[2]/div/div/ion-input/input", complemento);
+    }
+	
 
 	// ########################################################
 	
@@ -610,6 +636,10 @@ public class Cenarios_TelasPage extends BasePage {
 	public void clickMotivoSemGarantia_TrocaChip() throws InterruptedException {
 		clicarXpath("//div/div/button[3]/span"); //SEM GARANTIA
 	}
+	
+	public void clickMotivoPerda_TrocaChip() throws InterruptedException {
+        clicarXpath("//div/div/button[5]/span"); //PERDA
+    }
 
 	public void proximoInserirCHIP() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Próximo')]");
@@ -617,16 +647,7 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 	
 // ########################################################
-    
-    
-
-    // ######## BUSCA E INSERE TELEFONE ########
-	
-	
-	
-	
-	// ########################################################
-		
+ 
 
 	// ######## NOVO ATENDIMENTO ########
 	
@@ -912,7 +933,7 @@ public class Cenarios_TelasPage extends BasePage {
 	// ######## POPUP E BOTÃO PROXIMO ########
 
 	public void clickPopup() throws InterruptedException {
-	    Thread.sleep(10000);
+	    Thread.sleep(5000);
 		clicarXpath("//button[contains(.,'OK')]");
 	}
 	
@@ -1094,6 +1115,85 @@ public class Cenarios_TelasPage extends BasePage {
 	}
 	
 	// ########################################################
+    
+
+    // ######## GERAÇÃO DE PROTOCOLO ########
+
+    public void escolhaTimControleSmartFlex_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//ion-col[contains(.,'Titular')]");
+    }
+
+    public void clickMotivo1_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("xpath=//ion-select/button/span");
+    }
+    
+    public void escolhaMotivo1_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//span[contains(.,'Não Informado')]");
+    }
+    
+    public void clickMotivo2_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//ion-item[2]/div/div/ion-select/button/span");
+    }
+    
+    public void escolhaMotivo2_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//span[contains(.,'Não Informado')]");
+    }
+    
+    public void clickMotivo3_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//ion-item[3]/div/div/ion-select/button/span");
+    }
+    
+    public void escolhaMotivo3_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//span[contains(.,'Não Informado')]");
+    }
+    
+    public void clickMotivo4_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//ion-item[4]/div/div/ion-select/button/span");
+    }
+    
+    public void escolhaMotivo4_NovoProtocolo() throws InterruptedException {
+        Thread.sleep(10000);
+        clicarXpath("//span[contains(.,'Não Informado')]");
+    }
+    
+    public void clickResultado_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//ion-card[2]/ion-card-content/ion-item/div/div/ion-select/button/span");
+    }
+    
+    public void escolhaResultado_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//span[contains(.,'Chamado aberto')]");
+    }
+
+    public void clickMeioDeContato_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//ion-card[2]/ion-card-content/ion-item[2]/div/div/ion-select/button/span");
+    }
+    
+    public void escolhaMeioDeContato_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//span[contains(.,'E-mail')]");
+    }
+
+    public void clickObservacao_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//span[contains(.,'Próximo')]");
+    }
+    
+    public void setObservacao_NovoProtocolo(String protocolo) throws InterruptedException {
+        escreverSemTroca("//span[contains(.,'Próximo')]", protocolo);  
+    }
+    
+    public void proximo_NovoProtocolo() throws InterruptedException {
+        clicarXpath("//span[contains(.,'Próximo')]");
+    }
+
+
+    // ########################################################
+
 }
 
 

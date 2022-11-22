@@ -73,7 +73,15 @@ public class CY0003_Ativacao_De_Acesso_PrePago_Test extends Cenarios_TelasPage{
 		cenariostelas.clickOpcao();
 		cenariostelas.clickCampoDDD();
 		cenariostelas.clickDDD();
-		cenariostelas.proximoAtendimento();
+		// ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 			
 	
 	// ######## DADOS DO CLIENTE ########

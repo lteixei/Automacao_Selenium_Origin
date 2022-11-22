@@ -105,5 +105,9 @@ public class CY0017_Migracao_De_Pre_Para_Controle_ComTT_Test extends Cenarios_Te
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}
 }

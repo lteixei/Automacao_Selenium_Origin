@@ -114,7 +114,15 @@ public class CY0008_Ativacao_PosPago_Com_Aprovacao_De_Alcada_Test extends Cenari
 		cenariostelas.clickTipoLogradouro();
 		cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
+		// ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 
 		// ######## DADOS COMPLEMENTARES ########
@@ -194,7 +202,8 @@ public class CY0008_Ativacao_PosPago_Com_Aprovacao_De_Alcada_Test extends Cenari
 		//cenariostelas.clickCriarPedido();
 		cenariostelas.clickCriarPedidoComDoc();
 		
-		// ########// ########// ########
-        cenariostelas.encerra();
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}	
 }

@@ -92,7 +92,15 @@ public class CY0013_PERFIL_HDC_Test extends Cenarios_TelasPage{
 		//cenariostelas.clickTipoLogradouro();
 		//cenariostelas.setNomeDaRua("Itagiba");
 		cenariostelas.setNumero("520");
-		cenariostelas.proximoEnderecoClientes();
+		// ################################
+        cenariostelas.clickVerificarTIMLIVE();
+        cenariostelas.clickPopup();
+        cenariostelas.clickTipoDeComplemento();
+        cenariostelas.escolhaTipoDeComplemento();
+        cenariostelas.clickComplemento();
+        cenariostelas.setComplemento("401");
+        // ################################
+        cenariostelas.proximoEnderecoClientes();
 
 
 		// ######## DADOS COMPLEMENTARES ########
@@ -168,6 +176,10 @@ public class CY0013_PERFIL_HDC_Test extends Cenarios_TelasPage{
 		//cenariostelas.clickCriarPedido();
 		//cenariostelas.fechaPopUpSim_Não();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 
 	}
 }

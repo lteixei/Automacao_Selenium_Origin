@@ -213,5 +213,9 @@ public class CY0005_Ativacao_ControleFatura_Test extends Cenarios_TelasPage{
 		// ######## RESUMO DA OPERAÇÃO ########
 		cenariostelas.checkCiente();
 		cenariostelas.clickCriarPedidoComDoc();
+		
+		
+		// ######## ENCERRA E FECHA JANELA ########
+        //cenariostelas.encerra();
 	}	
 	}
