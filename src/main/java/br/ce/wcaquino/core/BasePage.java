@@ -280,7 +280,7 @@ public class BasePage {
 	}
 	
     public void encerra() throws InterruptedException {
-        Thread.sleep(30000);
+        Thread.sleep(50000);
 	    getDriver().quit();
     }
 }

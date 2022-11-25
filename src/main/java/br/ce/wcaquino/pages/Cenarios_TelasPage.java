@@ -102,6 +102,7 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void proximoAmbienteAtend() throws InterruptedException {
 		clicarXpath("//div[2]/button/span");
+		Thread.sleep(30000);
 	}
 	
 	// ########################################################
@@ -121,9 +122,14 @@ public class Cenarios_TelasPage extends BasePage {
     }
 
 	public void clickTimPreTop() throws InterruptedException {
-		Thread.sleep(15000);
+		Thread.sleep(20000);
 		clicarXpath("//p[contains(.,'TIM PRÉ TOP')]");
 	}
+	
+	public void clickTimControleSmartFlex() throws InterruptedException {
+        Thread.sleep(20000);
+        clicarXpath("//p[contains(.,'TIM Controle Smart Flex')]");
+    }
 	
 
 	public void clickTimControle_A_Plus() throws InterruptedException {
@@ -218,6 +224,7 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void clickNovoProtocolo() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Novo Protocolo')]");
+		Thread.sleep(10000);
 	}
 
 	public void clickConsultarProtocolos() throws InterruptedException {
@@ -449,12 +456,18 @@ public class Cenarios_TelasPage extends BasePage {
 		clicarXpath("//div[2]/button[2]/span");
 	}
 	
+	public void proximoEnderecoClientes2() throws InterruptedException {
+        clicarXpath("//div[2]/button[2]/span");
+        Thread.sleep(10000);
+    }
+	
 	//#############//#############//#############//#############//
 	//######### NOVA ATUALIZAÇÃO - OPÇÃO NOVA
 	
 	public void clickVerificarTIMLIVE() throws InterruptedException {
 	    Thread.sleep(5000);
 	    clicarCSS(".button-clear > .button-inner");
+	    Thread.sleep(5000);
     }
 
     public void clickTipoDeComplemento() throws InterruptedException {
@@ -524,6 +537,7 @@ public class Cenarios_TelasPage extends BasePage {
 
 	public void clickPosPagoFatura() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Pós-Pago Fatura')]");
+		Thread.sleep(10000);
 	}
 
 	public void clickPosPagoExpress() throws InterruptedException {
@@ -653,7 +667,6 @@ public class Cenarios_TelasPage extends BasePage {
 	
 
 	public void setCPF(String cpf) throws InterruptedException {
-		Thread.sleep(3000);
 		escreverSemTroca("//input[@type='tel']", cpf);
 	}
 
@@ -946,6 +959,12 @@ public class Cenarios_TelasPage extends BasePage {
 		Thread.sleep(10000);
 		clicarXpath("//span[contains(.,'Sim')]");
 	}
+	
+	public void clickBotaoProx() throws InterruptedException {
+	    Thread.sleep(10000);
+        clicarXpath("//span[contains(.,'Próximo')]");
+        
+    }
 
 	public void clickBotaoPlano() throws InterruptedException {
 		clicarXpath("//span[contains(.,'Próximo')]");
