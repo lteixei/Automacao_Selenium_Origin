@@ -85,6 +85,34 @@ public class DataBaseUtils {
         }
         return connect;
     }
+    
+    //conexão do BSCS com o PSK (acho que a senha está errada)
+    public static Connection newBSCSUAT1Connection() {
+        try {
+            // Load the JDBC driver
+            String portNumber = "", sid = "", host = "", url = "", username = "", password = "", nameService = "";
+            String driverName = "oracle.jdbc.driver.OracleDriver";
+            Class.forName(driverName);
+            // Create a connection to the database
+            portNumber = "1525";
+            nameService = "BSCSIXFQA1";
+            host = "snelnxm83";
+            url = "jdbc:oracle:thin:@" + host + ":" + portNumber + ":" + nameService;
+            // Nome de usuário do banco de dados
+            username = "SYSADM";
+            // Senha do banco de dados
+            password = "IX1bscs$.";
+            connect = DriverManager.getConnection(url, username, password);
+            System.out.println("Sucesso ao conectar no BD");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Ops, erro ao conectar no BD!"+e);
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Ops, erro ao conectar no BD!");
+        }
+        return connect;
+    }
+    
     public ResultSet executeAndReturnFirstResult(String sql, Connection connect){
         try {
             Statement query = connect.createStatement();
@@ -114,7 +142,7 @@ public class DataBaseUtils {
             return false;
         }
     }
-    //Fichar Conexão
+    //Fechar Conexão
     public static void closeConnection(){
         try {
             connect.close();

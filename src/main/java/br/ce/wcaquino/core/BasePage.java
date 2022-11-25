@@ -8,12 +8,8 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import com.gargoylesoftware.htmlunit.javascript.host.file.File;
 
 public class BasePage {
 	
@@ -27,6 +23,18 @@ public class BasePage {
 		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
 		getDriver().switchTo().defaultContent();
 	}
+	
+	public void escreverComDoisIframes(String name_campo, String texto) throws InterruptedException{
+		Thread.sleep(5000);
+		getDriver().switchTo().frame(0);
+		getDriver().switchTo().frame("iframe");
+		getDriver().findElement(By.xpath(name_campo)).clear();
+		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
+		getDriver().switchTo().defaultContent();
+		getDriver().switchTo().defaultContent();
+	}
+	
+	//######## ESCREVER FORA DA FRAME
 	public void escreverSemTroca(String name_campo, String texto) throws InterruptedException{
 		getDriver().findElement(By.xpath(name_campo)).clear();
 		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
@@ -37,15 +45,45 @@ public class BasePage {
 	}
 	
 	
+	/********* Botao ************/
 	
+	public void clicarBotao(String id) {
+		getDriver().switchTo().frame("iframe");
+		getDriver().findElement(By.id(id)).click();
+		getDriver().switchTo().defaultContent();
+	}
+	
+	public void clicarBotaoIframe(String xpath) {
+		getDriver().switchTo().frame(0);
+		getDriver().switchTo().frame("iframe");
+		getDriver().findElement(By.xpath(xpath)).click();
+		getDriver().switchTo().defaultContent();
+		getDriver().switchTo().defaultContent();
+	}
+	
+	public void clicarBotaoSemTroca(String id) throws InterruptedException {
+		Thread.sleep(8000);
+		getDriver().findElement(By.id(id)).click();
+	}
+	
+	public void clicarXpath(String element) throws InterruptedException {
+		Thread.sleep(2000);
+		getDriver().findElement(By.xpath(element)).click();
+	}	
+	
+	public void clicarCSS(String css) throws InterruptedException {
+        Thread.sleep(2000);
+        getDriver().findElement(By.cssSelector(css)).click();
+	}
+		
 	/********* UPLOAD DE ARQUIV0 ************/
 	
-	public void Upload() {
+	//public void Upload() {
 	//UPLOAD ARQUIVO
-		String filePath = "C:\\Users\\T3666975\\Id_Frente.PNG";
-	getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(filePath);
-	getDriver().findElement(By.xpath("//input[@value='Press']")).click();
-	}
+	//String filePath = "C:\\Users\\T3666975\\Id_Frente.PNG";
+	//getDriver().findElement(By.xpath("//input[@type='file']")).setAttribute("value", "your value");
+	//getDriver().findElement(By.xpath("//input[@value='Press']")).click();
+	//}
 	
 	
 	
@@ -125,28 +163,6 @@ public class BasePage {
 	public void selecionarComboPrime(String radical, String valor) {
 		clicarRadio(By.xpath("//*[@id='"+radical+"_input']/../..//span"));
 		clicarRadio(By.xpath("//*[@id='"+radical+"_items']//li[.='"+valor+"']"));
-	}
-	
-	/********* Botao ************/
-		
-	public void clicarBotao(String id) {
-		getDriver().switchTo().frame("iframe");
-		getDriver().findElement(By.id(id)).click();
-		getDriver().switchTo().defaultContent();
-	}
-	
-	public void clicarBotaoSemTroca(String id) throws InterruptedException {
-		Thread.sleep(8000);
-		getDriver().findElement(By.id(id)).click();
-	}
-	
-	public void clicarXpath(String element) throws InterruptedException {
-		Thread.sleep(2000);
-		getDriver().findElement(By.xpath(element)).click();
-	}
-	
-	public String obterValueElemento(String id) {
-		return getDriver().findElement(By.id(id)).getAttribute("value");
 	}
 	
 	/********* Link ************/
@@ -262,4 +278,9 @@ public class BasePage {
 		}
 		return idColuna;
 	}
+	
+    public void encerra() throws InterruptedException {
+        Thread.sleep(50000);
+	    getDriver().quit();
+    }
 }
