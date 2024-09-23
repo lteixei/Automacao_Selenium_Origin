@@ -12,6 +12,7 @@ public class CY0001_Register_Test extends Cenarios_Automation {
         // ######## LOGAR NO SISTEMA ########
         @BeforeClass
         public static void inicializa() throws InterruptedException {
+            // Abrindo o App TIM Vendas
             page.acessarTelaInicial();
         }
         
@@ -40,5 +41,12 @@ public class CY0001_Register_Test extends Cenarios_Automation {
             cenariostelas.send_PASSWORD("Le@lmt0406");
             cenariostelas.send_CONFIRM_PASSWORD("Le@lmt0406");
             cenariostelas.clica_SUBMIT();
-           }
+                
+            
+                        
+            // ######## INFORME O TIPO DE ACESSO DIGITAL ########
+            
+            // ########
+           
+        }
     }

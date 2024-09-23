@@ -19,31 +19,52 @@ import com.offbytwo.jenkins.model.Job;
 import com.offbytwo.jenkins.model.JobWithDetails;
 import com.offbytwo.jenkins.model.QueueReference;
 
-public class JenkinsHelper {
+public class JenkinsHelper23 {
 
-	public static String runJk(String simcard) throws IOException, URISyntaxException {
+  	//##### CONEXÃO DO JENKINS - UAT1
+	public static String runJk_Limpar_Massa(String cpf, String msisdn, String simcard) throws IOException, URISyntaxException {
 
-		JenkinsHttpConnection jenkin = new JenkinsHttpClient(new URI("http://10.171.161.91:8090/"),
-				"API","11daa0121f45f82d3c5806c5effc54403f");
-		List<NameValuePair> parametros = new ArrayList<NameValuePair>();
-		parametros.add(new BasicNameValuePair("AMBIENTE","UAT1"));
-		parametros.add(new BasicNameValuePair("MSISDN",""));
-		parametros.add(new BasicNameValuePair("DDD","15"));
-		parametros.add(new BasicNameValuePair("DOCUMENTO",""));
-		parametros.add(new BasicNameValuePair("CHIP",""));
-		parametros.add(new BasicNameValuePair("CONTRACT_TYPE","GSM"));
-		parametros.add(new BasicNameValuePair("CLIENT_TYPE","PF"));
-		HttpResponse resp = jenkin.post_form_with_result("/job/Obter_massa/buildWithParameters",
-				parametros, false);
-		String retorno = resp.toString();
-		return(retorno);
-	}
+        JenkinsHttpConnection jenkin = new JenkinsHttpClient(new URI("http://10.171.30.103:8080/"),
+                "API","ooajihgdisgvl5sfkzrvfh23fsk2ukdtrvlcmh6ootcwohpb2ura");
+        List<NameValuePair> parametros = new ArrayList<NameValuePair>();
+        parametros.add(new BasicNameValuePair("AMBIENTE","UAT1"));
+        parametros.add(new BasicNameValuePair("Execucao","Tudo"));
+        parametros.add(new BasicNameValuePair("CPF",cpf));
+        parametros.add(new BasicNameValuePair("MSISDN",msisdn));
+        parametros.add(new BasicNameValuePair("ICCID",simcard));
+        parametros.add(new BasicNameValuePair("IMSI",""));
+        parametros.add(new BasicNameValuePair("CONTRACT_TYPE","GSM"));
+        parametros.add(new BasicNameValuePair("CLIENT_TYPE","PF"));
+        HttpResponse resp = jenkin.post_form_with_result("/job/LimpaMassa_Movel/buildWithParameters",
+                parametros, false);
+        String retorno = resp.toString();
+        return(retorno);
+    }
+	
+	//##### CONEXÃO DO JENKINS - UAT2
+    public static String runJk(String simcard) throws IOException, URISyntaxException {
+
+        JenkinsHttpConnection jenkin = new JenkinsHttpClient(new URI("http://10.171.161.91:8090/"),
+                "API","11daa0121f45f82d3c5806c5effc54403f");
+        List<NameValuePair> parametros = new ArrayList<NameValuePair>();
+        parametros.add(new BasicNameValuePair("AMBIENTE","UAT2"));
+        parametros.add(new BasicNameValuePair("MSISDN",""));
+        parametros.add(new BasicNameValuePair("DDD","15"));
+        parametros.add(new BasicNameValuePair("DOCUMENTO",""));
+        parametros.add(new BasicNameValuePair("CHIP",""));
+        parametros.add(new BasicNameValuePair("CONTRACT_TYPE","GSM"));
+        parametros.add(new BasicNameValuePair("CLIENT_TYPE","PF"));
+        HttpResponse resp = jenkin.post_form_with_result("/job/Obter_massa/buildWithParameters",
+                parametros, false);
+        String retorno = resp.toString();
+        return(retorno);
+    }
 	
 	public static Map<String,String> getParametros(){
 		Map<String,String> parametros = new HashMap<String, String>();
         parametros.put("AMBIENTE","UAT1");
 		parametros.put("MSISDN","");
-		parametros.put("DDD","15");
+		parametros.put("DDD","12");
 		parametros.put("DOCUMENTO","");
 		parametros.put("CHIP","");
 		parametros.put("CONTRACT_TYPE","GSM");
@@ -51,11 +72,9 @@ public class JenkinsHelper {
 		return parametros;
 	}
 	
-	
-	
-	private String JENKIN_URL = "http://10.171.161.91:8090/";
+	private String JENKIN_URL = "http://10.171.30.103:8080/";
 	private String JENKIN_USER= "API";
-	private String JENKIN_TOKEN= "11daa0121f45f82d3c5806c5effc54403f";
+	private String JENKIN_TOKEN= "ooajihgdisgvl5sfkzrvfh23fsk2ukdtrvlcmh6ootcwohpb2ura";
 
 	private JenkinsServer jenkins;
 	private JenkinsHttpClient jenkinsHttpClient;
@@ -88,7 +107,8 @@ public class JenkinsHelper {
 		return null;
 	}
 
-	public String build(String jobName){
+	@SuppressWarnings("unused")
+    public String build(String jobName){
 
 		try {
 			Job job = jenkins.getJob(jobName);
@@ -122,7 +142,8 @@ public class JenkinsHelper {
 		return null;
 	}
 
-	public String build(String jobName, Map<String,String> parameters){
+	@SuppressWarnings("unused")
+    public String build(String jobName, Map<String,String> parameters){
 
 		try {
 			Job job = jenkins.getJob(jobName);
