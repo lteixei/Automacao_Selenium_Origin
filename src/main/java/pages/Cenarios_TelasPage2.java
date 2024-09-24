@@ -1945,23 +1945,23 @@ WebDriverWait wait = new WebDriverWait(getDriver(), 15000);// 15000 milissegundo
     // ######## BUSCA PROTOCOLO - GET ########
     // ########################################################
 
-    public String ResgataProtocolo() throws InterruptedException {
-        return obterTextoXpath(
-                "/html/body/ion-app/ng-component/ion-nav/page-protocol-generated/ion-content/div[2]/ion-card[1]/ion-card-content/ion-item/div[1]/div");
-    }
+    //public String ResgataProtocolo() throws InterruptedException {
+        //return obterTextoXpath(
+                //"/html/body/ion-app/ng-component/ion-nav/page-protocol-generated/ion-content/div[2]/ion-card[1]/ion-card-content/ion-item/div[1]/div");
+    //}
 
     // Aqui eu pego um "valor/numero" para ser usado
 
-    public String ResgataMSISDN() throws InterruptedException {
-        return obterTextoMSISDNXpath(
-                "/html/body/ion-app/ng-component/ion-nav/page-protocol-generated/ion-content/div[2]/ion-card[2]/ion-card-content/ion-item/div[1]/div");
+    //public String ResgataMSISDN() throws InterruptedException {
+        //return obterTextoMSISDNXpath(
+               // "/html/body/ion-app/ng-component/ion-nav/page-protocol-generated/ion-content/div[2]/ion-card[2]/ion-card-content/ion-item/div[1]/div");
 
-    }
+    //}
     
-    public String Resgata_Numero_MSISDN() throws InterruptedException {
-        return obterNumeroMSISDN_Xpath(
-                "//ion-list/ion-item/div/ion-radio/button/span");
-    }
+    //public String Resgata_Numero_MSISDN() throws InterruptedException {
+        //return obterNumeroMSISDN_Xpath(
+               // "//ion-list/ion-item/div/ion-radio/button/span");
+    //}
 
     // ########################################################
     // ######## ALTERNANDO ENTRE ABAS ########

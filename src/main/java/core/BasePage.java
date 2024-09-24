@@ -4,40 +4,32 @@ import static core.DriverFactory.getDriver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-
-
 
 public class BasePage {
 	
-@SuppressWarnings("unused")
-private Object WindowType;
-
 /********* TextField e TextArea 
  * @throws InterruptedException ************/
 
 	public void escrever(String name_campo, String texto) throws InterruptedException{
-		Thread.sleep(5000);
-		getDriver().switchTo().frame("iframe");
+		Thread.sleep(2000);
+		getDriver().switchTo().frame("SingleFrame");//AQUI É O "ID" OU "NAME" DA IFRAME
 		getDriver().findElement(By.xpath(name_campo)).clear();
 		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
 		getDriver().switchTo().defaultContent();
 	}
 	
 	public void escreverComDoisIframes(String name_campo, String texto) throws InterruptedException{
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		getDriver().switchTo().frame(0);
-		getDriver().switchTo().frame("iframe");
+		getDriver().switchTo().frame("SingleFrame");//AQUI É O "ID" OU "NAME" DA IFRAME
 		getDriver().findElement(By.xpath(name_campo)).clear();
 		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
 		getDriver().switchTo().defaultContent();
@@ -46,17 +38,28 @@ private Object WindowType;
 	
 	//######## ESCREVER FORA DA FRAME
 	public void escreverSemTroca(String name_campo, String texto) throws InterruptedException{
-	    WebDriverWait wait = new WebDriverWait(getDriver(), 60);
-        WebElement elemento = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(name_campo)));
-        elemento.clear();
-        elemento.sendKeys(texto);
-	    //getDriver().findElement(By.xpath(name_campo)).clear();
-		//getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
+		getDriver().findElement(By.xpath(name_campo)).clear();
+		getDriver().findElement(By.xpath(name_campo)).sendKeys(texto);
 	}
 	
 	public String obterValorCampo(String id_campo) {
 		return getDriver().findElement(By.id(id_campo)).getAttribute("value");
 	}
+	
+	/********* ABRIR LINK EM OUTRA ABA ************/
+	public void abrirLinkAba(String id_aba) {
+	getDriver().findElement(By.xpath(id_aba)).sendKeys(Keys.CONTROL + "t");
+	}
+	
+	/********* DRAG AND DROP ************/
+		
+	public String obter_DRAG(String id_campo) {
+        return getDriver().findElement(By.id(id_campo)).getAttribute("value");
+    }
+	
+	public String obter_DROP(String id_campo) {
+        return getDriver().findElement(By.id(id_campo)).getAttribute("value");
+    }
 	
 	
 	/********* Botao ************/
@@ -81,48 +84,42 @@ private Object WindowType;
 	}
 	
 	public void clicarXpath(String element) throws InterruptedException {
-	    WebDriverWait wait = new WebDriverWait(getDriver(), 60);
-	    WebElement elemento = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(element)));
-	    elemento.click();
-	    //Thread.sleep(2000);
-		//getDriver().findElement(By.xpath(element)).click();
-	}	
+		Thread.sleep(2000);
+		getDriver().findElement(By.xpath(element)).click();
+	}
+	
+	public void clicarF5(String atual) throws InterruptedException {
+        Thread.sleep(4000);
+        getDriver().findElement(By.xpath(atual)).sendKeys(Keys.F5);
+    }
 	
 	public void clicarCSS(String css) throws InterruptedException {
         Thread.sleep(2000);
         getDriver().findElement(By.cssSelector(css)).click();
 	}
-	
-	
-	/********* ABRIR SISTEMA EM OUTRA ABA ************/
-	public void acessarTelaInicial1(){
-	  // SE COLOCA ONDE ESTIVER O LNK E IMPORTA O (import org.openqa.selenium.JavascriptExecutor;)      
-	  ((JavascriptExecutor) getDriver()).executeScript("window.open()");
-	  Set<String> janelas = getDriver().getWindowHandles();     
-	  for (String janela : janelas) {         
-	  getDriver().switchTo().window(janela); } 
-	            
-	 //###########################################################################         
-	 // LINK
-	 DriverFactory.getDriver().get("https://siebelposfqa01.oci.internal.timbrasil.com.br/siebel/app/crc/ptb/");
-	 }
-
-	/********* VOLTAR PARA ABA ANTERIOR ************/
-    
-    public void voltar_aba_anterior() throws InterruptedException    {
-        getDriver().switchTo().window(getDriver().getWindowHandles().iterator().next());
-    }
-	
-	
+		
 	/********* UPLOAD DE ARQUIV0 ************/
-	//public void Upload() {
-	//UPLOAD ARQUIVO
-	//String filePath = "C:\\Users\\T3666975\\Id_Frente.PNG";
-	//getDriver().findElement(By.xpath("//input[@type='file']")).setAttribute("value", "your value");
-	//getDriver().findElement(By.xpath("//input[@value='Press']")).click();
-	//}
+	// CLICA NO BOTÃO OK NA JANELA POPUP
+	public void clicarBotao_OK() throws InterruptedException {
+	    getDriver().switchTo().alert().accept();
+	}
 	
+	public void escrever_No_Popup() throws InterruptedException {
+	    getDriver().switchTo().alert().sendKeys("Leonardo");
+	}
 	
+	//######## FECHAR JANELA NO WINDOWS
+	public void fechar_Janela() throws InterruptedException {
+	String originalWindow = getDriver().getWindowHandle();
+	}
+	
+	/********* MOUSE HOUVER 
+	 * @param string ************/
+	public void passar_Mouse_Sobre(String string) throws InterruptedException {
+	WebElement hoverable = getDriver().findElement(By.id("hover"));
+    //new Actions(getDriver()).moveToElement(hoverable).perform();        
+	}        
+	        
 	/********* Assert - Validar um Texto ************/
 	
 	public void Test_assert_equals() throws InterruptedException
@@ -141,17 +138,6 @@ private Object WindowType;
 	public String obterTextoXpath(String xpath) {
         return obterTexto(By.xpath(xpath));
     }
-	
-	public String obterTextoMSISDNXpath(String xpath) {
-        return obterTexto(By.xpath(xpath));
-    }
-	
-	public String obterNumeroMSISDN_Xpath(String xpath) {
-        return obterTexto(By.xpath(xpath));
-    }
-	/********* CONDIÇÃO - ASSERT ************/
-	
-	
 	
 	
 	/********* Radio e Check ************/
@@ -246,8 +232,6 @@ private Object WindowType;
 	public String obterTexto(String id) {
 		return obterTexto(By.id(id));
 	}
-	
-	
 	
 	/********* Alerts ************/
 	
@@ -348,9 +332,7 @@ private Object WindowType;
 	}
 	
     public void encerra() throws InterruptedException {
-        Thread.sleep(5000);
-	    getDriver().close();
-	    	    
+        Thread.sleep(40000);
+	    getDriver().quit();
     }
-    
 }
