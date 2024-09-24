@@ -14,7 +14,7 @@ public class DriverFactory {
 	private DriverFactory() {}
 	
 	public static WebDriver getDriver(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\55219\\Desktop\\Automação\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Webdriver\\chromedriver-win64\\chromedriver.exe");
         if(driver == null) {
             switch (Propriedades.browser) {
                 case CHROME: 
