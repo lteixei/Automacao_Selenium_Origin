@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    tools { nodejs 'Node23' }
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh 'npm i'
+            }
+        }
+        stage('Running production backtests') {
+            steps {
+                sh 'mvn clean test'
+            }
+        }
+    }
+    post {
+        always {
+            junit 'results/*.xml'
+        }
+    }
+}
