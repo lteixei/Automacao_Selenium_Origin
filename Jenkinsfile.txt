@@ -1,23 +1,50 @@
 pipeline {
     agent any
 
-    tools { nodejs 'Node23' }
+    tools {
+        // Nome do Maven configurado no Jenkins
+        maven 'Maven 3.6.3'  
+
+        // Nome do JDK configurado no Jenkins
+        jdk 'JDK 21'  // Certifique-se de que o JDK esteja configurado corretamente no Jenkins
+    }
 
     stages {
-        stage('Install dependencies') {
+        stage('Run Tests') {
             steps {
-                sh 'npm i'
+                script {
+                    // Executa os testes com Maven
+                    bat 'mvn test'
+                }
+            }
+            post {
+                always {
+                    // Armazena os relatórios de testes
+                    archiveArtifacts artifacts: '**/target/*.xml', allowEmptyArchive: true
+                    junit '**/target/test-*.xml'  // Publica os relatórios JUnit no Jenkins
+                }
             }
         }
-        stage('Running production backtests') {
+
+        stage('Post Test Actions') {
             steps {
-                sh 'mvn clean test'
+                script {
+                    echo 'Testes executados. Veja os resultados no Jenkins.'
+                }
             }
         }
     }
+
     post {
         always {
-            junit 'results/*.xml'
+            echo 'Pipeline concluída.'
+        }
+        success {
+            echo 'Teste executado com sucesso!'
+        }
+        failure {
+            echo 'Falha na execução do teste!'
         }
     }
 }
+
