@@ -1,5 +1,6 @@
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import pages.Cenarios_Automation;
 import pages.LoginPage;
 
@@ -30,5 +31,10 @@ public class CY0008_Ineraction_DragAndDrop_Test extends Cenarios_Automation {
             cenariostelas.clica_Dynamic1();
             cenariostelas.clica_Dynamic2();
             cenariostelas.clica_Dynamic3();
+
+            cenariostelas.clicaMenu_Interactions();
+            cenariostelas.clica_Resizable();
+            cenariostelas.clica_Move_Resizable();
+            
             }        
 }

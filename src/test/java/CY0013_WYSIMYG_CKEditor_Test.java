@@ -25,5 +25,28 @@ public class CY0013_WYSIMYG_CKEditor_Test extends Cenarios_Automation {
             cenariostelas.clica_Bold();
             cenariostelas.clica_Italico();
             //INSERIR IMAGEM
+            cenariostelas.clica_WYSIWYG();
+            cenariostelas.clica_TinyMCE();
+            cenariostelas.send_TinyMCE("teste");
+            cenariostelas.clica_TinyMCELeiaMais();
+            page.fecharAbaAtual();
+
+            //#########################
+            cenariostelas.clica_WYSIWYG();
+            cenariostelas.clica_SummerNote();
+            cenariostelas.select_Text();
+            cenariostelas.clica_text_Bold_();
+            cenariostelas.clica_text_Font();
+            cenariostelas.select_text_Font();
+            cenariostelas.clica_text_Color();
+            cenariostelas.select_text_Color();
+            cenariostelas.clica_text_Centralizar();
+            cenariostelas.select_text_Centralizar();
+            cenariostelas.clica_Fim();
+            //#########################
+            cenariostelas.clica_WYSIWYG();
+            cenariostelas.clica_CodeMirror();
+            cenariostelas.clica_Para_Escrever();
+            cenariostelas.escrever_Texto_CodeMirror();
         }         
 }

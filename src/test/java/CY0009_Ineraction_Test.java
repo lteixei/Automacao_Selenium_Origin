@@ -4,7 +4,7 @@ import org.junit.Test;
 import pages.Cenarios_Automation;
 import pages.LoginPage;
 
-public class CY0010_Ineraction_Selectable_Test extends Cenarios_Automation {
+public class CY0009_Ineraction_Test extends Cenarios_Automation {
 
     private static Cenarios_Automation cenariostelas = new Cenarios_Automation();
     private static LoginPage page = new LoginPage();
@@ -15,9 +15,9 @@ public class CY0010_Ineraction_Selectable_Test extends Cenarios_Automation {
             page.acessarTelaInicial();
             cenariostelas.clicaInicialSemLogin();
         }
-         
+     
         @Test
-        public void SelecTable() throws InterruptedException {
+        public void Interaction() throws InterruptedException {
             //########## Default ############
             cenariostelas.clicaMenu_Interactions();
             cenariostelas.clica_Selectable();
@@ -27,5 +27,5 @@ public class CY0010_Ineraction_Selectable_Test extends Cenarios_Automation {
             cenariostelas.clica_SEGUNDO_CTRL();
             cenariostelas.clica_QUARTO_CTRL();
             cenariostelas.clica_SEXTO_CTRL();
-        }     
+            }        
 }

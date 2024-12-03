@@ -23,5 +23,17 @@ public class CY0019_File_Upload_Test extends Cenarios_Automation {
             cenariostelas.clica_UpLoad();
             cenariostelas.clicaFileUpload();
             cenariostelas.remover_UpLoad();
+
+            cenariostelas.clicaInicialSemLogin();
+            cenariostelas.clica_Menu_More();
+            cenariostelas.clicar_Menu_File_Download();
+          //#####
+            cenariostelas.send_Download_File("Fazendo um teste");
+            cenariostelas.clicar_Gerar_File_Download();
+            cenariostelas.clicar_Download_File_Gerado();
+         //#####
+            cenariostelas.send_Download_PDF("Fazendo um teste");
+            cenariostelas.clicar_Gerar_PDF();
+            cenariostelas.clicar_Download_PDF_Gerado();
           }
     }

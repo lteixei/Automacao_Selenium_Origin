@@ -21,6 +21,9 @@ public class CY0011_Video_Vimeo_Test extends Cenarios_Automation {
         public void Video_Vimeo() throws InterruptedException {
             cenariostelas.clicaMenu_Video();
             cenariostelas.clica_Vimeo();
+
+            cenariostelas.clicaMenu_Video();
+            cenariostelas.clica_Youtube();
         }
            
 }
