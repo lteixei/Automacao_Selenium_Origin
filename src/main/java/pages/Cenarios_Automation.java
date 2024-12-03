@@ -1166,10 +1166,10 @@ public class Cenarios_Automation extends BasePage {
     public void clicaFileUpload() {
             try {
                 // Encontre o elemento de input do tipo file
-                WebElement uploadElement = getDriver().findElement(By.xpath("/html/body/section/div[1]/div/div/div[1]/div[3]/input"));
+                WebElement uploadElement = getDriver().findElement(By.xpath("/html/body/section/div[1]/div/div/div[1]"));
 
                 // Defina o caminho do arquivo que você deseja fazer upload
-                String filePath = "C:\\Temp\\appx.csv";
+                String filePath = "C:\\Leonardo\\package_lock.json";
 
                 // Envie o caminho do arquivo para o elemento de input
                 uploadElement.sendKeys(filePath);
