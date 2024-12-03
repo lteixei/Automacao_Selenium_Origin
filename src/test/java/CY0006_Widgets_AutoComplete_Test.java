@@ -19,9 +19,6 @@ public class CY0006_Widgets_AutoComplete_Test extends Cenarios_Automation {
         @Test
         public void Widgets_To_AutoComplete() throws InterruptedException {
             cenariostelas.clicaMenu_Widgets();
-            cenariostelas.clica_Widgets_Accordion();
-          //###  
-            cenariostelas.clicaMenu_Widgets();
             cenariostelas.clica_teste();
             cenariostelas.clica_Calemdario();
             cenariostelas.clica_8();            
@@ -29,7 +26,6 @@ public class CY0006_Widgets_AutoComplete_Test extends Cenarios_Automation {
             cenariostelas.send_Date_Nasc("12/10/1976");
             cenariostelas.clica_Closed_Calend();
             //#####################33
-            cenariostelas.clicaMenu_Widgets();
             cenariostelas.clicaMenu_Widgets();
             cenariostelas.clica_Widgets_Slider();
             cenariostelas.clica_Slider();
