@@ -1,50 +1,66 @@
 pipeline {
     agent any
 
-    tools {
-        // Nome do Maven configurado no Jenkins
-        maven 'Maven 3.6.3'  
-
-        // Nome do JDK configurado no Jenkins
-        jdk 'JDK 21'  // Certifique-se de que o JDK esteja configurado corretamente no Jenkins
+    environment {
+        // Variáveis de ambiente (por exemplo, para caminho do driver)
+        PATH_TO_CHROMEDRIVER = 'C:\Webdriver\chromedriver-win64/chromedriver.exe'
     }
 
     stages {
-        stage('Run Tests') {
+        stage('Preparação') {
+            steps {
+                // Clonar o repositório (se não estiver configurado na opção SCM do Jenkins)
+                git 'https://github.com/lteixei/Automacao_Selenium_Origin.git'
+            }
+        }
+
+        stage('Instalação de Dependências') {
             steps {
                 script {
-                    // Executa os testes com Maven
-                    bat 'mvn test'
-                }
-            }
-            post {
-                always {
-                    // Armazena os relatórios de testes
-                    archiveArtifacts artifacts: '**/target/*.xml', allowEmptyArchive: true
-                    junit '**/target/test-*.xml'  // Publica os relatórios JUnit no Jenkins
+                    // Se estiver usando Maven
+                    bat 'mvn clean install'
+                    
+                    // Ou se estiver usando Gradle
+                    // sh './gradlew build'
                 }
             }
         }
 
-        stage('Post Test Actions') {
+        stage('Execução dos Testes') {
             steps {
                 script {
-                    echo 'Testes executados. Veja os resultados no Jenkins.'
+                    // Rodando os testes Selenium usando Maven ou Gradle
+                    // Para Maven
+                    bat 'mvn test'
+                    
+                    // Ou para Gradle
+                    // sh './gradlew test'
                 }
+            }
+        }
+
+        stage('Resultados') {
+            steps {
+                // Coleta e exibe os resultados dos testes
+                junit '**/target/test-*.xml'  // Para resultados de testes Maven
             }
         }
     }
 
     post {
         always {
-            echo 'Pipeline concluída.'
+            // Aqui você pode adicionar etapas que sempre serão executadas, como limpeza
+            echo 'Pipeline concluída!'
         }
         success {
-            echo 'Teste executado com sucesso!'
+            // Caso o pipeline seja bem-sucedido
+            echo 'Os testes foram bem-sucedidos!'
         }
         failure {
-            echo 'Falha na execução do teste!'
+            // Caso o pipeline falhe
+            echo 'Algum teste falhou!'
         }
     }
 }
+
 
